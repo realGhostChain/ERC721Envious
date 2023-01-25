@@ -1,0 +1,610 @@
+Using network 'test'.
+
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+  Contract: ERC721EnviousRoyaltyPreset
+    post deployment checks
+      ✓ royalties are correct
+      ✓ total supply is zero
+    reseting availability
+      ✓ arbitrary address could not change ghost related addresses
+      ✓ arbitrary address could not change commissions
+      ✓ arbitrary address could not change royalties
+      ✓ ghost token address could not be zero address
+      ✓ ghost bonding address could not be zero address
+      ✓ ghost related addresses could be changed by owner (68972 gas)
+      ✓ commissions could be changed by owner (27230 gas)
+      ✓ royalties could be changed by owner (28271 gas)
+    minting
+      ✓ arbitrary address could not mint tokens
+      ✓ owner can mint new tokens (172293 gas)
+    royalties
+      ✓ taken when receiver and sender are addresses (115987 gas)
+      ✓ taken when receiver or address is smart (115848 gas)
+      ✓ not taken when collateral is zero (175552 gas)
+      ✓ all underlying currencies are used as collateral (1207095 gas)
+    ERC165
+      ✓ supportsInterface uses less than 30k gas
+      ✓ all interfaces are reported as supported
+      ✓ all interface functions are in ABI
+    with minted tokens
+      balanceOf
+        when the given address owns some tokens
+          ✓ returns the amount of tokens owned by the given address
+        when the given address does not own any tokens
+          ✓ returns 0
+        when querying the zero address
+          ✓ throws
+      ownerOf
+        when the given token ID was tracked by this token
+          ✓ returns the owner of the given token ID
+        when the given token ID was not tracked by this token
+          ✓ reverts
+      transfers
+        via transferFrom
+          when called by the owner
+            ✓ transfers the ownership of the given token ID to the given address
+            ✓ emits a Transfer event
+            ✓ clears the approval for the token ID
+            ✓ adjusts owners balances
+            ✓ adjusts owners tokens by index
+          when called by the approved individual
+            ✓ transfers the ownership of the given token ID to the given address
+            ✓ emits a Transfer event
+            ✓ clears the approval for the token ID
+            ✓ adjusts owners balances
+            ✓ adjusts owners tokens by index
+          when called by the operator
+            ✓ transfers the ownership of the given token ID to the given address
+            ✓ emits a Transfer event
+            ✓ clears the approval for the token ID
+            ✓ adjusts owners balances
+            ✓ adjusts owners tokens by index
+          when called by the owner without an approved user
+            ✓ transfers the ownership of the given token ID to the given address
+            ✓ emits a Transfer event
+            ✓ clears the approval for the token ID
+            ✓ adjusts owners balances
+            ✓ adjusts owners tokens by index
+          when sent to the owner
+            ✓ keeps ownership of the token
+            ✓ clears the approval for the token ID
+            ✓ emits only a transfer event
+            ✓ keeps the owner balance
+            ✓ keeps same tokens by index
+          when the address of the previous owner is incorrect
+            ✓ reverts
+          when the sender is not authorized for the token id
+            ✓ reverts
+          when the given token ID does not exist
+            ✓ reverts
+          when the address to transfer the token to is the zero address
+            ✓ reverts
+        via safeTransferFrom
+          with data
+            to a user account
+              when called by the owner
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the approved individual
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the operator
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the owner without an approved user
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when sent to the owner
+                ✓ keeps ownership of the token
+                ✓ clears the approval for the token ID
+                ✓ emits only a transfer event
+                ✓ keeps the owner balance
+                ✓ keeps same tokens by index
+              when the address of the previous owner is incorrect
+                ✓ reverts
+              when the sender is not authorized for the token id
+                ✓ reverts
+              when the given token ID does not exist
+                ✓ reverts
+              when the address to transfer the token to is the zero address
+                ✓ reverts
+            to a valid receiver contract
+              ✓ calls onERC721Received (102963 gas)
+              ✓ calls onERC721Received from approved (105722 gas)
+              when called by the owner
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the approved individual
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the operator
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the owner without an approved user
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when sent to the owner
+                ✓ keeps ownership of the token
+                ✓ clears the approval for the token ID
+                ✓ emits only a transfer event
+                ✓ keeps the owner balance
+                ✓ keeps same tokens by index
+              when the address of the previous owner is incorrect
+                ✓ reverts
+              when the sender is not authorized for the token id
+                ✓ reverts
+              when the given token ID does not exist
+                ✓ reverts
+              when the address to transfer the token to is the zero address
+                ✓ reverts
+              with an invalid token id
+                ✓ reverts
+          without data
+            to a user account
+              when called by the owner
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the approved individual
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the operator
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the owner without an approved user
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when sent to the owner
+                ✓ keeps ownership of the token
+                ✓ clears the approval for the token ID
+                ✓ emits only a transfer event
+                ✓ keeps the owner balance
+                ✓ keeps same tokens by index
+              when the address of the previous owner is incorrect
+                ✓ reverts
+              when the sender is not authorized for the token id
+                ✓ reverts
+              when the given token ID does not exist
+                ✓ reverts
+              when the address to transfer the token to is the zero address
+                ✓ reverts
+            to a valid receiver contract
+              ✓ calls onERC721Received (101844 gas)
+              ✓ calls onERC721Received from approved (104615 gas)
+              when called by the owner
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the approved individual
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the operator
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when called by the owner without an approved user
+                ✓ transfers the ownership of the given token ID to the given address
+                ✓ emits a Transfer event
+                ✓ clears the approval for the token ID
+                ✓ adjusts owners balances
+                ✓ adjusts owners tokens by index
+              when sent to the owner
+                ✓ keeps ownership of the token
+                ✓ clears the approval for the token ID
+                ✓ emits only a transfer event
+                ✓ keeps the owner balance
+                ✓ keeps same tokens by index
+              when the address of the previous owner is incorrect
+                ✓ reverts
+              when the sender is not authorized for the token id
+                ✓ reverts
+              when the given token ID does not exist
+                ✓ reverts
+              when the address to transfer the token to is the zero address
+                ✓ reverts
+              with an invalid token id
+                ✓ reverts
+          to a receiver contract returning unexpected value
+            ✓ reverts (285979 gas)
+          to a receiver contract that reverts with message
+            ✓ reverts (286027 gas)
+          to a receiver contract that reverts without message
+            ✓ reverts (286027 gas)
+          to a receiver contract that panics
+            ✓ reverts (286027 gas)
+          to a contract that does not implement the required function
+            ✓ reverts (285979 gas)
+      approve
+        when clearing approval
+          when there was no prior approval
+            ✓ clears approval for the token
+            ✓ emits an approval event
+          when there was a prior approval
+            ✓ clears approval for the token
+            ✓ emits an approval event
+        when approving a non-zero address
+          when there was no prior approval
+            ✓ sets the approval for the target address
+            ✓ emits an approval event
+          when there was a prior approval to the same address
+            ✓ sets the approval for the target address
+            ✓ emits an approval event
+          when there was a prior approval to a different address
+            ✓ sets the approval for the target address
+            ✓ emits an approval event
+        when the address that receives the approval is the owner
+          ✓ reverts
+        when the sender does not own the given token ID
+          ✓ reverts
+        when the sender is approved for the given token ID
+          ✓ reverts (48768 gas)
+        when the sender is an operator
+          ✓ sets the approval for the target address
+          ✓ emits an approval event
+        when the given token ID does not exist
+          ✓ reverts
+      setApprovalForAll
+        when the operator willing to approve is not the owner
+          when there is no operator approval set by the sender
+            ✓ approves the operator (46298 gas)
+            ✓ emits an approval event (46298 gas)
+          when the operator was set as not approved
+            ✓ approves the operator (46298 gas)
+            ✓ emits an approval event (46298 gas)
+            ✓ can unset the operator approval (26386 gas)
+          when the operator was already approved
+            ✓ keeps the approval to the given address (26398 gas)
+            ✓ emits an approval event (26398 gas)
+        when the operator is the owner
+          ✓ reverts
+      getApproved
+        when token is not minted
+          ✓ reverts
+        when token has been minted 
+          ✓ should return the zero address
+          when account has been approved
+            ✓ returns approved account
+    _mint(address, uint256)
+      ✓ reverts with a null destination address
+      with minted token
+        ✓ emits a Transfer event
+        ✓ creates the token
+    _burn
+      ✓ reverts when burning a non-existent token id
+      with minted tokens
+        with burnt token
+          ✓ emits a Transfer event
+          ✓ deletes the token
+          ✓ reverts when burning a token id that has been deleted
+    ERC165
+      ✓ supportsInterface uses less than 30k gas
+      ✓ all interfaces are reported as supported
+      ✓ all interface functions are in ABI
+    metadata
+      ✓ has a name
+      ✓ has a symbol
+      token URI
+        ✓ return empty string by default
+        ✓ reverts when queried for non existent token id
+    ERC165
+      ✓ supportsInterface uses less than 30k gas
+      ✓ all interfaces are reported as supported
+      ✓ all interface functions are in ABI
+    with minted tokens
+      totalSupply
+        ✓ returns total token supply
+      tokenOfOwnerByIndex
+        when the given index is lower than the amount of tokens owned by the given address
+          ✓ returns the token ID placed at the given index
+        when the index is greater than or equal to the total tokens owned by the given address
+          ✓ reverts
+        when the given address does not own any token
+          ✓ reverts
+        after transferring all tokens to another user
+          ✓ returns correct token IDs for target
+          ✓ returns empty collection for original owner
+      tokenByIndex
+        ✓ returns all tokens
+        ✓ reverts if index is greater than supply
+        ✓ returns all tokens after burning token 1 and minting new tokens (392060 gas)
+        ✓ returns all tokens after burning token 2 and minting new tokens (380465 gas)
+    _mint(address, uint256)
+      ✓ reverts with a null destination address
+      with minted token
+        ✓ adjusts owner tokens by index
+        ✓ adjusts all tokens list
+    _burn
+      ✓ reverts when burning a non-existent token id
+      with minted tokens
+        with burnt token
+          ✓ removes that token from the token list of the owner
+          ✓ adjusts all tokens list
+          ✓ burns all tokens (52199 gas)
+    like an ownable ERC721
+      ✓ has an owner
+      transfer ownership
+        ✓ changes owner after transfer (28654 gas)
+        ✓ prevents non-owners from transferring
+        ✓ guards ownership against stuck state
+      renounce ownership
+        ✓ loses owner after renouncement (23269 gas)
+        ✓ prevents non-owners from renouncement
+    like a ERC721Envious
+      post deployment checks
+        ✓ black hole address is correct
+        ✓ token for harvesting is correct
+        ✓ commissions are correct
+        ✓ ghost token address is zero by default
+        ✓ ghost bonding address is ero by default
+        ✓ could set community addresses (34651 gas)
+      collateralization
+        ✓ with basic token (206754 gas)
+        ✓ with DAI mock (206015 gas)
+        ✓ with USDT mock (206742 gas)
+        ✓ with rebasing token (211895 gas)
+        ✓ with ether (134268 gas)
+        ✓ emits an event Collateralize (206754 gas)
+        ✓ with multiple tokens (682616 gas)
+        ✓ with multiple tokens while array lengths should match
+        ✓ multiple times (290958 gas)
+        ✓ available for any arbitrary address (304171 gas)
+        ✓ revert if amounts exceeds actual balance
+        ✓ revert if amount not match to ether sent value
+        ✓ extra ether will be send back (141276 gas)
+        ✓ total balances correct (311770 gas)
+      uncollateralization
+        ✓ of basic token (97801 gas)
+        ✓ of DAI mock (98805 gas)
+        ✓ of USDT mock (98494 gas)
+        ✓ of rebasing token (103189 gas)
+        ✓ of ether (71665 gas)
+        ✓ total balances correct (169466 gas)
+        ✓ of multiple tokens (469954 gas)
+        ✓ emits an event Uncollateralize (97801 gas)
+        ✓ clears array of addresses (108972 gas)
+        ✓ forbidden for arbitrary address
+        ✓ revert if amounts not match with addresses
+        ✓ revert if amounts exceeds actual collateral
+      disperse
+        ✓ of basic token (125299 gas)
+        ✓ of DAI mock (124560 gas)
+        ✓ of USDT mock (125299 gas)
+        ✓ of rebasing token (130440 gas)
+        ✓ of ether (72718 gas)
+        ✓ of ether without msg.value fails
+        ✓ of ether, rest is returned back (79715 gas)
+        ✓ emits event Dispersed (125299 gas)
+        ✓ with direct sending of ether to smart contract (69838 gas)
+        ✓ disperse of multiple tokens (403232 gas)
+        ✓ any arbitrary address can disperse (273365 gas)
+        ✓ revert if amounts not match with addresses
+        ✓ revert if amounts exceeds actual balance
+        ✓ revert if amount not match to ether sent value
+      harvest
+        ✓ of basic token (398917 gas)
+        ✓ of DAI mock (399211 gas)
+        ✓ of USDT mock (398917 gas)
+        ✓ of rebasing token (413359 gas)
+        ✓ of ether (277286 gas)
+        ✓ of multiple tokens (1793297 gas)
+        ✓ emits Harvested event (398917 gas)
+        ✓ only for community token owners (206754 gas)
+        ✓ revert if amount exceeds actual balance (383505 gas)
+      _disperse
+        ✓ amount stored correctly after tx
+        ✓ amount from dispersed goes to actual collateral (335786 gas)
+        ✓ amount in ERC20 token from dispersed could be uncollateralized (316405 gas)
+        ✓ amount in ether from dispersed could be uncollateralized (252709 gas)
+        ✓ uncollateralization amount could not be greater than dispersed
+        ✓ could not take same disperse multiple times (187851 gas)
+        ✓ do not overlapping during increasing of total supply (766545 gas)
+      bad collateral token
+        ✓ revert single collateral if token do not contain decimals
+        ✓ revert multi collateral if token do not contain decimals
+        ✓ revert multi collateral with ether if token do not contain decimals
+        ✓ revert single disperse if token do not contain decimals
+        ✓ revert multi disperse if token do not contain decimals
+        ✓ revert multi disperse with ether if token do not contain decimals
+    like a ERC721Envious with discount
+      buy DeFi 2.0 bond
+        revert if bonding address is incorrect
+          ✓ bonding address is zero
+        if bonding address is correct
+          ✓ initially no bonds for token
+          ✓ bought bond is registered correctly (197139 gas)
+          ✓ can store multiple bonds (839927 gas)
+          ✓ bondIndexes stored correctly (197139 gas)
+          ✓ bondPayouts stored correctly (197129 gas)
+          ✓ discounted collateral emits event Bond (197139 gas)
+          ✓ revert if tokenId does not exist
+          ✓ revert if bond does not exist
+          ✓ revert if bond not available for current maxPrice
+          ✓ revert if bond is over
+          ✓ revert if quote token is incorrect (890004 gas)
+      claim DeFi 2.0 bond
+        ✓ could not claim before expiration (55765 gas)
+        ✓ claimed correctly (233277 gas)
+        ✓ clear bondIndexes after claiming (233277 gas)
+        ✓ clear bondPayouts after claiming (233277 gas)
+        ✓ emits Collateralized event (233277 gas)
+        ✓ added claim token if not exists (233277 gas)
+        ✓ array of indexes could be claimed (500554 gas)
+        ✓ revert if bond does not exists
+    like a ERC721Envious with discount
+      buy DeFi 2.0 bond
+        revert if bonding address is incorrect
+          ✓ bonding address is zero
+        if bonding address is correct
+          ✓ initially no bonds for token
+          ✓ bought bond is registered correctly (197139 gas)
+          ✓ can store multiple bonds (839927 gas)
+          ✓ bondIndexes stored correctly (197139 gas)
+          ✓ bondPayouts stored correctly (197139 gas)
+          ✓ discounted collateral emits event Bond (197139 gas)
+          ✓ revert if tokenId does not exist
+          ✓ revert if bond does not exist
+          ✓ revert if bond not available for current maxPrice
+          ✓ revert if bond is over
+          ✓ revert if quote token is incorrect (889992 gas)
+      claim DeFi 2.0 bond
+        ✓ could not claim before expiration (55765 gas)
+        ✓ claimed correctly (233277 gas)
+        ✓ clear bondIndexes after claiming (233277 gas)
+        ✓ clear bondPayouts after claiming (233277 gas)
+        ✓ emits Collateralized event (233277 gas)
+        ✓ added claim token if not exists (233277 gas)
+        ✓ array of indexes could be claimed (500554 gas)
+        ✓ revert if bond does not exists
+    ERC165
+      ✓ supportsInterface uses less than 30k gas
+      ✓ all interfaces are reported as supported
+      ✓ all interface functions are in ABI
+
+·------------------------------------------------------------|---------------------------|--------------|----------------------------·
+|            [90mSolc version: 0.8.4+commit.c7e474f2[39m             ·  [90mOptimizer enabled: true[39m  ·  [90mRuns: 1337[39m  ·  [90mBlock limit: 6718946 gas[39m  │
+·····························································|···························|··············|·····························
+|  [32m[1mMethods[22m[39m                                                                                                                           │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [1mContract[22m                    ·  [1mMethod[22m                     ·  [32mMin[39m        ·  [32mMax[39m        ·  [32mAvg[39m         ·  [1m# calls[22m     ·  [1meur (avg)[22m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBadToken[39m                    ·  approve                    ·          -  ·          -  ·       46213  ·          [90m12[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBadToken[39m                    ·  mint                       ·          -  ·          -  ·       70691  ·           [90m6[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBaseToken[39m                   ·  approve                    ·      [36m29180[39m  ·      [31m46244[39m  ·       46115  ·         [90m133[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBaseToken[39m                   ·  burn                       ·          -  ·          -  ·       26889  ·           [90m1[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBaseToken[39m                   ·  mint                       ·      [36m51185[39m  ·      [31m68321[39m  ·       67929  ·         [90m144[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mBaseToken[39m                   ·  transfer                   ·          -  ·          -  ·       46608  ·           [90m1[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mDAI[39m                         ·  approve                    ·      [36m29149[39m  ·      [31m46213[39m  ·       45966  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mDAI[39m                         ·  burn                       ·          -  ·          -  ·       27704  ·           [90m1[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mDAI[39m                         ·  mint                       ·      [36m70713[39m  ·      [31m70749[39m  ·       70714  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  approve                    ·      [36m26628[39m  ·      [31m51081[39m  ·       44710  ·         [90m215[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  burn                       ·      [36m52199[39m  ·      [31m68274[39m  ·       65358  ·          [90m15[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  changeCommissions          ·      [36m27230[39m  ·      [31m68285[39m  ·       68074  ·         [90m389[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  changeCommunityAddresses   ·      [36m34651[39m  ·      [31m68851[39m  ·       68659  ·         [90m360[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  changeRoyalties            ·          -  ·          -  ·       28271  ·           [90m6[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  claimDiscountedCollateral  ·      [36m55765[39m  ·     [31m244786[39m  ·      209562  ·          [90m28[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  collateralize              ·      [36m74616[39m  ·     [31m682724[39m  ·      194172  ·         [90m106[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  disperse                   ·      [36m72718[39m  ·     [31m403232[39m  ·      150496  ·          [90m27[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  getDiscountedCollateral    ·     [36m158329[39m  ·     [31m206611[39m  ·      187426  ·          [90m46[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  harvest                    ·      [36m81301[39m  ·     [31m312999[39m  ·      132266  ·          [90m14[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  mint                       ·     [36m160493[39m  ·     [31m172293[39m  ·      167614  ·         [90m578[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  renounceOwnership          ·          -  ·          -  ·       23269  ·           [90m2[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  safeTransferFrom           ·      [36m36109[39m  ·     [31m106120[39m  ·       90073  ·         [90m104[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  safeTransferFrom           ·      [36m36783[39m  ·     [31m107239[39m  ·       90936  ·         [90m104[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  setApprovalForAll          ·      [36m26386[39m  ·      [31m46298[39m  ·       45350  ·         [90m189[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  setGhostAddresses          ·      [36m68948[39m  ·      [31m68972[39m  ·       68970  ·          [90m50[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  transferFrom               ·      [36m35755[39m  ·     [31m139697[39m  ·       92096  ·          [90m64[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  transferOwnership          ·          -  ·          -  ·       28654  ·           [90m2[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mERC721EnviousRoyaltyPreset[39m  ·  uncollateralize            ·      [36m61717[39m  ·     [31m298705[39m  ·      111035  ·          [90m43[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mRebaseToken[39m                 ·  approve                    ·      [36m29135[39m  ·      [31m46235[39m  ·       45987  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mRebaseToken[39m                 ·  initialize                 ·      [36m94307[39m  ·      [31m94319[39m  ·       94318  ·          [90m68[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mRebaseToken[39m                 ·  transfer                   ·          -  ·          -  ·       34665  ·           [90m1[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mStakingMock[39m                 ·  fund                       ·          -  ·          -  ·       61607  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mTetherToken[39m                 ·  approve                    ·      [36m26344[39m  ·      [31m46244[39m  ·       45955  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mTetherToken[39m                 ·  burn                       ·          -  ·          -  ·       26907  ·           [90m1[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [90mTetherToken[39m                 ·  mint                       ·          -  ·          -  ·       68219  ·          [90m69[39m  ·          [32m[90m-[32m[39m  │
+·······························|·····························|·············|·············|··············|··············|··············
+|  [32m[1mDeployments[22m[39m                                               ·                                          ·  [1m% of limit[22m  ·             │
+·····························································|·············|·············|··············|··············|··············
+|  BadToken                                                  ·          -  ·          -  ·     1140859  ·        [90m17 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  BaseToken                                                 ·     [36m775391[39m  ·     [31m775475[39m  ·      775424  ·      [90m11.5 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  BlackHole                                                 ·          -  ·          -  ·      321368  ·       [90m4.8 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  BondingMock                                               ·    [36m1114846[39m  ·    [31m1114870[39m  ·     1114868  ·      [90m16.6 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  DAI                                                       ·          -  ·          -  ·     1148998  ·      [90m17.1 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  ERC721EnviousRoyaltyPreset                                ·          -  ·          -  ·     4539709  ·      [90m67.6 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  ERC721ReceiverMock                                        ·     [36m285979[39m  ·     [31m286027[39m  ·      286014  ·       [90m4.3 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  RebaseToken                                               ·          -  ·          -  ·     1711816  ·      [90m25.5 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  StakingMock                                               ·     [36m246573[39m  ·     [31m246585[39m  ·      246584  ·       [90m3.7 %[39m  ·          [32m[90m-[32m[39m  │
+·····························································|·············|·············|··············|··············|··············
+|  TetherToken                                               ·          -  ·          -  ·      758083  ·      [90m11.3 %[39m  ·          [32m[90m-[32m[39m  │
+·------------------------------------------------------------|-------------|-------------|--------------|--------------|-------------·
+
+  358 passing (1h)
+

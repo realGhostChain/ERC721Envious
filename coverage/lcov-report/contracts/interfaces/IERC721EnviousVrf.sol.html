@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/interfaces/IERC721EnviousVrf.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">contracts/interfaces/</a> IERC721EnviousVrf.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/0</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+// GhostContracts (last updated v0.3.0) (ERC721/interfaces/IERC721Envious.sol)
+&nbsp;
+pragma solidity ^0.8.0;
+&nbsp;
+import "./IERC721Envious.sol";
+&nbsp;
+/// @title Additional extension for IERC721Envious, extra VRF-based functionality.
+/// @author 571nkY @ghostown
+/// @dev Ability to randomize collateralization process.
+interface IERC721EnviousVrf is IERC721Envious {
+	event VrfChanged(
+		uint64 newSSubscriptionId,
+		bytes32 newSKeyHash,
+		uint32 newNumWords,
+		uint32 newCallbackGasLimit,
+		uint16 newRequestConfirmations
+	);
+&nbsp;
+	/// @dev VRF Coordinator address. Immutable and specific to each network.
+	/// See https://docs.chain.link/docs/vrf-contracts/#configurations.
+	/// @return address VRF coordinator.
+	function vrfCoordinatorAddress() external view returns (address);
+&nbsp;
+	/// @dev Your subscription ID.
+	/// @return Chainlink synscription id.
+	function sSubscriptionId() external view returns (uint64);
+&nbsp;
+	/// @dev The gas lane to use, which specifies the maximum gas price to bump to.
+	/// For a list of available gas lanes on each network,
+	/// see https://docs.chain.link/docs/vrf-contracts/#configuration.
+	/// @return maximum gas price.
+	function sKeyHash() external view returns (bytes32);
+	
+	/// @dev Depends on the number of requested values that you want sent to the
+	/// fulfillRandomWords() function. Storing each word costs about 20,000 gas,
+	/// so 40,000 is a safe default for this example contract. Test and adjust
+	/// this limit based on the network that you select, the size of the request,
+	/// and the processing of the callback request in the fulfillRandomWords()
+	/// function.
+	/// @return gas for fulfillRandomWords() call.
+	function callbackGasLimit() external view returns (uint32);
+	
+	/// @dev Number of words to return. Cannot exceed VRFCoordinatorV2.MAX_NUM_WORDS.
+	/// @return number of words.
+	function numWords() external view returns (uint32);
+	
+	/// @dev Needed number of block confirmation. The default is 3.
+	/// @return number of block confirmations.
+	function requestConfirmations() external view returns (uint16);
+&nbsp;
+    /// @dev Get on-chain randomness from Chainlink VRF v2.
+    /// 
+    /// @return requestId unique identifier.
+	function prepareRandomness() external returns (uint256);
+&nbsp;
+	/// @dev Extra amount to be distributed for randomly chosen tokens.
+	/// 
+	/// @param tokenAddress address of distributed token.
+	/// @return extra amount to be distributed.
+	function extraDisperseAmount(address tokenAddress) external view returns (uint256);
+&nbsp;
+	/// @dev Extra disperse that is already taken.
+	///
+	/// @param tokenAddress address of distributed token.
+	/// @return already taken extra disperse.
+	function extraDisperseTaken(address tokenAddress) external view returns (uint256);
+&nbsp;
+	/// @dev All `tokenId`s that are divisible by this number without a remainder are
+	/// randomly choosen for exra distribution.
+	/// 
+	/// @param tokenAddress address of token of distributed token.
+	/// @return divisor for tokenId.
+	function extraDisperseTokenId(address tokenAddress) external view returns (uint256);
+&nbsp;
+	/// @dev Additional randomly generated amount of tokens to be distributed.
+	/// 
+	/// @param tokenAddress address of distributed token.
+	/// @param tokenId unique identifier of token.
+	/// @return addiional amount to be distributed.
+	function randomAmountsDisperse(address tokenAddress, uint256 tokenId) external view returns(uint256);
+&nbsp;
+    /// @dev Collateralize random token ids with predefined `amounts` of `tokenAddresses`.
+    /// 
+    /// Requirements:
+    /// - length of tokens and length of amounts must match
+    /// 
+    /// @param amounts of tokens to be send as collateral
+    /// @param tokenAddresses address of tokens to be send as collateral
+	function collateralRandomTokens(
+		uint256[] memory amounts, 
+		address[] memory tokenAddresses
+	) external payable;
+&nbsp;
+    /// @dev Collateralize specified token ids with random amounts.
+    /// 
+    /// Requirements:
+    /// - amount should match with `msg.value` if ETH is used
+    /// 
+    /// @param tokenIds array of tokens to be collateralized
+    /// @param amount of tokens, total amount that will be split
+    /// @param tokenAddress address of token to be used as collateral
+	function collateralRandomAmounts(
+		uint256[] memory tokenIds,
+		uint256 amount,
+		address tokenAddress
+	) external payable;
+&nbsp;
+    /// @dev Initialize all chainlink related information.
+    /// 
+    /// @param newSSubscriptionId your subscription id
+    /// @param newSKeyHash the gas lane to use, which specifies the maximum gas price to bump to
+	/// @param newNumWords number of random values to retrieve
+    /// @param newCallbackGasLimit needed gaslimit for fulfillRandomWords()
+    /// @param newRequestConfirmations number of confirmations before the result
+	function initializeVRF(
+        uint64 newSSubscriptionId,
+        bytes32 newSKeyHash,
+		uint32 newNumWords,
+        uint32 newCallbackGasLimit,
+        uint16 newRequestConfirmations
+	) external;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 21 2023 19:53:29 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

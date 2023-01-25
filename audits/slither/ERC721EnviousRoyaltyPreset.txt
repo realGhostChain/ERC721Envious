@@ -1,0 +1,263 @@
+Compilation warnings/errors on contracts/presets/ERC721EnviousRoyaltyPreset.sol:
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/presets/ERC721EnviousRoyaltyPreset.sol:23:1:
+   |
+23 | contract ERC721EnviousRoyaltyPreset is Ownable, IERC721EnviousRoyalty, ERC721Envious {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+[93m
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse = (3 * denominator) ^ 2 (contracts/openzeppelin/utils/math/Math.sol#117)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#121)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#122)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#123)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#124)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#125)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-denominator = denominator / twos (contracts/openzeppelin/utils/math/Math.sol#102)
+	-inverse *= 2 - denominator * inverse (contracts/openzeppelin/utils/math/Math.sol#126)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) performs a multiplication on the result of a division:
+	-prod0 = prod0 / twos (contracts/openzeppelin/utils/math/Math.sol#105)
+	-result = prod0 * inverse (contracts/openzeppelin/utils/math/Math.sol#132)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply[0m
+[93m
+ERC721Envious._harvest(uint256,address) (contracts/extension/ERC721Envious.sol#302-322) uses a dangerous strict equality:
+	- communityBalance[tokenAddress] == 0 (contracts/extension/ERC721Envious.sol#306)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dangerous-strict-equalities[0m
+[93m
+ERC721Envious._checkValidity(address) (contracts/extension/ERC721Envious.sol#430-435) contains a tautology or contradiction:
+	- require(bool,string)(IERC20Metadata(tokenAddress).decimals() >= 0,ERC721Envious: no decimals) (contracts/extension/ERC721Envious.sol#433)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#tautology-or-contradiction[0m
+[93m
+ERC721._checkOnERC721Received(address,address,uint256,bytes) (contracts/openzeppelin/token/ERC721/ERC721.sol#429-451) ignores return value by IERC721Receiver(to).onERC721Received(_msgSender(),from,tokenId,data) (contracts/openzeppelin/token/ERC721/ERC721.sol#436-447)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return[0m
+[92m
+ERC721Envious.getAmount(uint256,address) (contracts/extension/ERC721Envious.sol#211-217) has external calls inside a loop: circulatingSupply = IERC20(communityToken).totalSupply() - IERC20(communityToken).balanceOf(blackHole) (contracts/extension/ERC721Envious.sol#215)
+ERC721Envious._scaledAmount(address) (contracts/extension/ERC721Envious.sol#275-292) has external calls inside a loop: defaultDecimals = 10 ** IERC20Metadata(communityToken).decimals() (contracts/extension/ERC721Envious.sol#278)
+ERC721Envious._scaledAmount(address) (contracts/extension/ERC721Envious.sol#275-292) has external calls inside a loop: innerDecimals = 10 ** IERC20Metadata(communityPool[i]).decimals() (contracts/extension/ERC721Envious.sol#281)
+ERC721Envious._sendEther(uint256) (contracts/extension/ERC721Envious.sol#512-516) has external calls inside a loop: (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+Address.functionCallWithValue(address,bytes,uint256,string) (contracts/openzeppelin/utils/Address.sol#128-137) has external calls inside a loop: (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+ERC721Envious._checkValidity(address) (contracts/extension/ERC721Envious.sol#430-435) has external calls inside a loop: require(bool,string)(IERC20Metadata(tokenAddress).decimals() >= 0,ERC721Envious: no decimals) (contracts/extension/ERC721Envious.sol#433)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop[0m
+[92m
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).retval (contracts/openzeppelin/token/ERC721/ERC721.sol#436)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (contracts/openzeppelin/token/ERC721/ERC721.sol#429-451) potentially used before declaration: retval == IERC721Receiver.onERC721Received.selector (contracts/openzeppelin/token/ERC721/ERC721.sol#437)
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).reason (contracts/openzeppelin/token/ERC721/ERC721.sol#438)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (contracts/openzeppelin/token/ERC721/ERC721.sol#429-451) potentially used before declaration: reason.length == 0 (contracts/openzeppelin/token/ERC721/ERC721.sol#439)
+Variable 'ERC721._checkOnERC721Received(address,address,uint256,bytes).reason (contracts/openzeppelin/token/ERC721/ERC721.sol#438)' in ERC721._checkOnERC721Received(address,address,uint256,bytes) (contracts/openzeppelin/token/ERC721/ERC721.sol#429-451) potentially used before declaration: revert(uint256,uint256)(32 + reason,mload(uint256)(reason)) (contracts/openzeppelin/token/ERC721/ERC721.sol#444)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#pre-declaration-usage-of-local-variables[0m
+[92m
+Reentrancy in ERC721Envious.claimDiscountedCollateral(uint256,uint256[]) (contracts/extension/ERC721Envious.sol#188-206):
+	External calls:
+	- payout = INoteKeeper(_ghostBondingAddress).redeem(address(this),indexes,true) (contracts/extension/ERC721Envious.sol#200)
+	State variables written after the call(s):
+	- bondPayouts[tokenId] -= payout (contracts/extension/ERC721Envious.sol#203)
+Reentrancy in ERC721Envious.getDiscountedCollateral(uint256,address,uint256,uint256,uint256) (contracts/extension/ERC721Envious.sol#156-183):
+	External calls:
+	- IERC20(quoteToken).safeTransferFrom(_msgSender(),address(this),amount) (contracts/extension/ERC721Envious.sol#168)
+	- IERC20(quoteToken).safeApprove(_ghostBondingAddress,amount) (contracts/extension/ERC721Envious.sol#169)
+	- (payout,index) = IBondDepository(_ghostBondingAddress).deposit(bondId,amount,maxPrice,address(this),address(this)) (contracts/extension/ERC721Envious.sol#171-177)
+	State variables written after the call(s):
+	- bondIndexes[tokenId].push(index) (contracts/extension/ERC721Envious.sol#181)
+	- bondPayouts[tokenId] += payout (contracts/extension/ERC721Envious.sol#180)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2[0m
+[92m
+Reentrancy in ERC721Envious._addTokenCollateral(uint256,uint256,address,bool) (contracts/extension/ERC721Envious.sol#336-361):
+	External calls:
+	- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/extension/ERC721Envious.sol#357)
+	Event emitted after the call(s):
+	- Collateralized(tokenId,amount,tokenAddress) (contracts/extension/ERC721Envious.sol#360)
+Reentrancy in ERC721Envious._disperseTokenCollateral(uint256,address) (contracts/extension/ERC721Envious.sol#412-428):
+	External calls:
+	- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/extension/ERC721Envious.sol#424)
+	Event emitted after the call(s):
+	- Dispersed(tokenAddress,amount) (contracts/extension/ERC721Envious.sol#427)
+Reentrancy in ERC721Envious._harvest(uint256,address) (contracts/extension/ERC721Envious.sol#302-322):
+	External calls:
+	- _sendEther(scaledAmount) (contracts/extension/ERC721Envious.sol#313)
+		- (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+	- IERC20(tokenAddress).safeTransfer(_msgSender(),scaledAmount) (contracts/extension/ERC721Envious.sol#315)
+	- IERC20(communityToken).safeTransferFrom(_msgSender(),blackHole,amount) (contracts/extension/ERC721Envious.sol#319)
+	External calls sending eth:
+	- _sendEther(scaledAmount) (contracts/extension/ERC721Envious.sol#313)
+		- (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+	Event emitted after the call(s):
+	- Harvested(tokenAddress,amount,scaledAmount) (contracts/extension/ERC721Envious.sol#321)
+Reentrancy in ERC721Envious._removeTokenCollateral(uint256,uint256,address) (contracts/extension/ERC721Envious.sol#375-399):
+	External calls:
+	- _sendEther(ownerBalance) (contracts/extension/ERC721Envious.sol#393)
+		- (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+	- IERC20(tokenAddress).safeTransfer(_msgSender(),ownerBalance) (contracts/extension/ERC721Envious.sol#395)
+	External calls sending eth:
+	- _sendEther(ownerBalance) (contracts/extension/ERC721Envious.sol#393)
+		- (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+	Event emitted after the call(s):
+	- Uncollateralized(tokenId,ownerBalance,tokenAddress) (contracts/extension/ERC721Envious.sol#398)
+Reentrancy in ERC721Envious.claimDiscountedCollateral(uint256,uint256[]) (contracts/extension/ERC721Envious.sol#188-206):
+	External calls:
+	- payout = INoteKeeper(_ghostBondingAddress).redeem(address(this),indexes,true) (contracts/extension/ERC721Envious.sol#200)
+	- _addTokenCollateral(tokenId,payout,_ghostAddress,true) (contracts/extension/ERC721Envious.sol#204)
+		- returndata = address(token).functionCall(data,SafeERC20: low-level call failed) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#110)
+		- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+		- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/extension/ERC721Envious.sol#357)
+	External calls sending eth:
+	- _addTokenCollateral(tokenId,payout,_ghostAddress,true) (contracts/extension/ERC721Envious.sol#204)
+		- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+	Event emitted after the call(s):
+	- Collateralized(tokenId,amount,tokenAddress) (contracts/extension/ERC721Envious.sol#360)
+		- _addTokenCollateral(tokenId,payout,_ghostAddress,true) (contracts/extension/ERC721Envious.sol#204)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3[0m
+[92m
+ERC721._checkOnERC721Received(address,address,uint256,bytes) (contracts/openzeppelin/token/ERC721/ERC721.sol#429-451) uses assembly
+	- INLINE ASM (contracts/openzeppelin/token/ERC721/ERC721.sol#443-445)
+Address._revert(bytes,string) (contracts/openzeppelin/utils/Address.sol#231-243) uses assembly
+	- INLINE ASM (contracts/openzeppelin/utils/Address.sol#236-239)
+Strings.toString(uint256) (contracts/openzeppelin/utils/Strings.sol#18-38) uses assembly
+	- INLINE ASM (contracts/openzeppelin/utils/Strings.sol#24-26)
+	- INLINE ASM (contracts/openzeppelin/utils/Strings.sol#30-32)
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) uses assembly
+	- INLINE ASM (contracts/openzeppelin/utils/math/Math.sol#66-70)
+	- INLINE ASM (contracts/openzeppelin/utils/math/Math.sol#86-93)
+	- INLINE ASM (contracts/openzeppelin/utils/math/Math.sol#100-109)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage[0m
+[92m
+Different versions of Solidity are used:
+	- Version used: ['^0.8.0', '^0.8.1']
+	- ^0.8.0 (contracts/extension/ERC721Envious.sol#4)
+	- ^0.8.0 (contracts/interfaces/IBondDepository.sol#3)
+	- ^0.8.0 (contracts/interfaces/IERC721Envious.sol#4)
+	- ^0.8.0 (contracts/interfaces/IERC721EnviousRoyalty.sol#4)
+	- ^0.8.0 (contracts/interfaces/INoteKeeper.sol#3)
+	- ^0.8.0 (contracts/openzeppelin/access/Ownable.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/IERC20Metadata.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/ERC721.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721Receiver.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/extensions/IERC721Metadata.sol#4)
+	- ^0.8.1 (contracts/openzeppelin/utils/Address.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/Context.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/Counters.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/Strings.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/introspection/ERC165.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/introspection/IERC165.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/math/Math.sol#4)
+	- ^0.8.0 (contracts/presets/ERC721EnviousRoyaltyPreset.sol#4)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used[0m
+[92m
+ERC721Envious._harvest(uint256,address) (contracts/extension/ERC721Envious.sol#302-322) has costly operations inside a loop:
+	- communityPool.pop() (contracts/extension/ERC721Envious.sol#309)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#costly-operations-inside-a-loop[0m
+[92m
+Address.functionCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#85-87) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256) (contracts/openzeppelin/utils/Address.sol#114-120) is never used and should be removed
+Address.functionDelegateCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#170-172) is never used and should be removed
+Address.functionDelegateCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#180-187) is never used and should be removed
+Address.functionStaticCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#145-147) is never used and should be removed
+Address.functionStaticCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#155-162) is never used and should be removed
+Address.sendValue(address,uint256) (contracts/openzeppelin/utils/Address.sol#60-65) is never used and should be removed
+Address.verifyCallResult(bool,bytes,string) (contracts/openzeppelin/utils/Address.sol#219-229) is never used and should be removed
+Context._msgData() (contracts/openzeppelin/utils/Context.sol#21-23) is never used and should be removed
+Counters.decrement(Counters.Counter) (contracts/openzeppelin/utils/Counters.sol#32-38) is never used and should be removed
+Counters.reset(Counters.Counter) (contracts/openzeppelin/utils/Counters.sol#40-42) is never used and should be removed
+ERC721._baseURI() (contracts/openzeppelin/token/ERC721/ERC721.sol#105-107) is never used and should be removed
+ERC721._beforeTokenTransfer(address,address,uint256,uint256) (contracts/openzeppelin/token/ERC721/ERC721.sol#467-481) is never used and should be removed
+ERC721Envious._disperse(address,uint256) (contracts/extension/ERC721Envious.sol#505) is never used and should be removed
+Math.average(uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#34-37) is never used and should be removed
+Math.ceilDiv(uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#45-48) is never used and should be removed
+Math.log10(uint256,Math.Rounding) (contracts/openzeppelin/utils/math/Math.sol#296-301) is never used and should be removed
+Math.log2(uint256) (contracts/openzeppelin/utils/math/Math.sol#205-241) is never used and should be removed
+Math.log2(uint256,Math.Rounding) (contracts/openzeppelin/utils/math/Math.sol#247-252) is never used and should be removed
+Math.log256(uint256) (contracts/openzeppelin/utils/math/Math.sol#309-333) is never used and should be removed
+Math.log256(uint256,Math.Rounding) (contracts/openzeppelin/utils/math/Math.sol#339-344) is never used and should be removed
+Math.max(uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#19-21) is never used and should be removed
+Math.min(uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#26-28) is never used and should be removed
+Math.mulDiv(uint256,uint256,uint256) (contracts/openzeppelin/utils/math/Math.sol#55-135) is never used and should be removed
+Math.mulDiv(uint256,uint256,uint256,Math.Rounding) (contracts/openzeppelin/utils/math/Math.sol#140-151) is never used and should be removed
+Math.sqrt(uint256) (contracts/openzeppelin/utils/math/Math.sol#158-189) is never used and should be removed
+Math.sqrt(uint256,Math.Rounding) (contracts/openzeppelin/utils/math/Math.sol#194-199) is never used and should be removed
+SafeERC20.safeDecreaseAllowance(IERC20,address,uint256) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#70-81) is never used and should be removed
+SafeERC20.safeIncreaseAllowance(IERC20,address,uint256) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#61-68) is never used and should be removed
+SafeERC20.safePermit(IERC20Permit,address,address,uint256,uint256,uint8,bytes32,bytes32) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#83-97) is never used and should be removed
+Strings.toHexString(address) (contracts/openzeppelin/utils/Strings.sol#67-69) is never used and should be removed
+Strings.toHexString(uint256) (contracts/openzeppelin/utils/Strings.sol#43-47) is never used and should be removed
+Strings.toHexString(uint256,uint256) (contracts/openzeppelin/utils/Strings.sol#52-62) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code[0m
+[92m
+Pragma version^0.8.0 (contracts/extension/ERC721Envious.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IBondDepository.sol#3) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IERC721Envious.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IERC721EnviousRoyalty.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/INoteKeeper.sol#3) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/access/Ownable.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/IERC20Metadata.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/ERC721.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721Receiver.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/extensions/IERC721Metadata.sol#4) allows old versions
+Pragma version^0.8.1 (contracts/openzeppelin/utils/Address.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/Context.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/Counters.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/Strings.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/introspection/ERC165.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/introspection/IERC165.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/math/Math.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/presets/ERC721EnviousRoyaltyPreset.sol#4) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity[0m
+[92m
+Low level call in ERC721Envious._sendEther(uint256) (contracts/extension/ERC721Envious.sol#512-516):
+	- (success) = _msgSender().call{value: amount}() (contracts/extension/ERC721Envious.sol#514)
+Low level call in Address.sendValue(address,uint256) (contracts/openzeppelin/utils/Address.sol#60-65):
+	- (success) = recipient.call{value: amount}() (contracts/openzeppelin/utils/Address.sol#63)
+Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (contracts/openzeppelin/utils/Address.sol#128-137):
+	- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+Low level call in Address.functionStaticCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#155-162):
+	- (success,returndata) = target.staticcall(data) (contracts/openzeppelin/utils/Address.sol#160)
+Low level call in Address.functionDelegateCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#180-187):
+	- (success,returndata) = target.delegatecall(data) (contracts/openzeppelin/utils/Address.sol#185)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls[0m
+[92m
+Variable ERC721Envious._commissions (contracts/extension/ERC721Envious.sol#30) is not in mixedCase
+Variable ERC721Envious._ghostAddress (contracts/extension/ERC721Envious.sol#33) is not in mixedCase
+Variable ERC721Envious._ghostBondingAddress (contracts/extension/ERC721Envious.sol#34) is not in mixedCase
+Function IERC20Permit.DOMAIN_SEPARATOR() (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#59) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions[0m
+[92m
+renounceOwnership() should be declared external:
+	- Ownable.renounceOwnership() (contracts/openzeppelin/access/Ownable.sol#61-63)
+transferOwnership(address) should be declared external:
+	- Ownable.transferOwnership(address) (contracts/openzeppelin/access/Ownable.sol#69-72)
+balanceOf(address) should be declared external:
+	- ERC721.balanceOf(address) (contracts/openzeppelin/token/ERC721/ERC721.sol#62-65)
+name() should be declared external:
+	- ERC721.name() (contracts/openzeppelin/token/ERC721/ERC721.sol#79-81)
+symbol() should be declared external:
+	- ERC721.symbol() (contracts/openzeppelin/token/ERC721/ERC721.sol#86-88)
+tokenURI(uint256) should be declared external:
+	- ERC721.tokenURI(uint256) (contracts/openzeppelin/token/ERC721/ERC721.sol#93-98)
+	- ERC721EnviousRoyaltyPreset.tokenURI(uint256) (contracts/presets/ERC721EnviousRoyaltyPreset.sol#102-107)
+approve(address,uint256) should be declared external:
+	- ERC721.approve(address,uint256) (contracts/openzeppelin/token/ERC721/ERC721.sol#112-122)
+setApprovalForAll(address,bool) should be declared external:
+	- ERC721.setApprovalForAll(address,bool) (contracts/openzeppelin/token/ERC721/ERC721.sol#136-138)
+transferFrom(address,address,uint256) should be declared external:
+	- ERC721.transferFrom(address,address,uint256) (contracts/openzeppelin/token/ERC721/ERC721.sol#150-159)
+safeTransferFrom(address,address,uint256) should be declared external:
+	- ERC721.safeTransferFrom(address,address,uint256) (contracts/openzeppelin/token/ERC721/ERC721.sol#164-170)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external[0m
+contracts/presets/ERC721EnviousRoyaltyPreset.sol analyzed (22 contracts with 78 detectors), 107 result(s) found

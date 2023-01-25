@@ -1,0 +1,11 @@
+contracts/.placeholder
+test/.placeholder
+
+build
+migrations
+node_modules
+
+.env
+.solcx-lock-*
+analyze.sh
+coverage.json

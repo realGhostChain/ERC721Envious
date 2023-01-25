@@ -1,0 +1,6 @@
+[92m
+Pragma version^0.8.0 (contracts/BlackHole.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IBlackHole.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity[0m
+contracts/BlackHole.sol analyzed (3 contracts with 78 detectors), 3 result(s) found

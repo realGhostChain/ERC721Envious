@@ -1,0 +1,26 @@
+{
+  "name": "envy",
+  "version": "0.1.3",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.16",
+    "eth-gas-reporter": "^0.2.25",
+    "ganache-cli": "^6.12.2",
+    "solidity-coverage": "^0.7.21",
+    "truffle-contract-size": "^2.0.1",
+    "truffle-plugin-verify": "^0.5.28"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.2",
+    "dotenv": "^16.0.3"
+  }
+}

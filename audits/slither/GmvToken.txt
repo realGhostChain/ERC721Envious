@@ -1,0 +1,40 @@
+[92m
+GhostMcAfeeVision.renewSuperMinter(address).newSuperMinter (contracts/GmvToken.sol#23) lacks a zero-check on :
+		- _superMinter = newSuperMinter (contracts/GmvToken.sol#25)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation[0m
+[92m
+Context._msgData() (contracts/openzeppelin/utils/Context.sol#21-23) is never used and should be removed
+ERC20._burn(address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#285-301) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code[0m
+[92m
+Pragma version^0.8.0 (contracts/GmvToken.sol#3) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/ERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/IERC20Metadata.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/Context.sol#4) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity[0m
+[92m
+mint(address,uint256) should be declared external:
+	- GhostMcAfeeVision.mint(address,uint256) (contracts/GmvToken.sol#18-21)
+name() should be declared external:
+	- ERC20.name() (contracts/openzeppelin/token/ERC20/ERC20.sol#62-64)
+symbol() should be declared external:
+	- ERC20.symbol() (contracts/openzeppelin/token/ERC20/ERC20.sol#70-72)
+decimals() should be declared external:
+	- ERC20.decimals() (contracts/openzeppelin/token/ERC20/ERC20.sol#87-89)
+totalSupply() should be declared external:
+	- ERC20.totalSupply() (contracts/openzeppelin/token/ERC20/ERC20.sol#94-96)
+balanceOf(address) should be declared external:
+	- ERC20.balanceOf(address) (contracts/openzeppelin/token/ERC20/ERC20.sol#101-103)
+transfer(address,uint256) should be declared external:
+	- ERC20.transfer(address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#113-117)
+approve(address,uint256) should be declared external:
+	- ERC20.approve(address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#136-140)
+transferFrom(address,address,uint256) should be declared external:
+	- ERC20.transferFrom(address,address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#158-167)
+increaseAllowance(address,uint256) should be declared external:
+	- ERC20.increaseAllowance(address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#181-185)
+decreaseAllowance(address,uint256) should be declared external:
+	- ERC20.decreaseAllowance(address,uint256) (contracts/openzeppelin/token/ERC20/ERC20.sol#201-210)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external[0m
+contracts/GmvToken.sol analyzed (5 contracts with 78 detectors), 19 result(s) found

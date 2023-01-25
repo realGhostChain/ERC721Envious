@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for openzeppelin/utils/math/Math.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">openzeppelin/utils/math/</a> Math.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/107</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/48</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/119</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.7.0) (utils/math/Math.sol)
+&nbsp;
+pragma solidity ^0.8.0;
+&nbsp;
+/**
+ * @dev Standard math utilities missing in the Solidity language.
+ */
+library Math {
+    enum Rounding {
+        Down, // Toward negative infinity
+        Up, // Toward infinity
+        Zero // Toward zero
+    }
+&nbsp;
+    /**
+     * @dev Returns the largest of two numbers.
+     */
+<span class="fstat-no" title="function not covered" >    function max(uint256 a, uint256 b) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return a &gt; b ? a : b;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the smallest of two numbers.
+     */
+<span class="fstat-no" title="function not covered" >    function min(uint256 a, uint256 b) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        return a &lt; b ? a : b;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the average of two numbers. The result is rounded towards
+     * zero.
+     */
+<span class="fstat-no" title="function not covered" >    function average(uint256 a, uint256 b) internal pure returns (uint256) {</span>
+        // (a + b) / 2 can overflow.
+<span class="cstat-no" title="statement not covered" >        return (a &amp; b) + (a ^ b) / 2;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the ceiling of the division of two numbers.
+     *
+     * This differs from standard division with `/` in that it rounds up instead
+     * of rounding down.
+     */
+<span class="fstat-no" title="function not covered" >    function ceilDiv(uint256 a, uint256 b) internal pure returns (uint256) {</span>
+        // (a + b - 1) / b can overflow on addition, so we distribute.
+<span class="cstat-no" title="statement not covered" >        return a == 0 ? 0 : (a - 1) / b + 1;</span>
+    }
+&nbsp;
+    /**
+     * @notice Calculates floor(x * y / denominator) with full precision. Throws if result overflows a uint256 or denominator == 0
+     * @dev Original credit to Remco Bloemen under MIT license (https://xn--2-umb.com/21/muldiv)
+     * with further edits by Uniswap Labs also under MIT license.
+     */
+<span class="fstat-no" title="function not covered" >    function mulDiv(</span>
+        uint256 x,
+        uint256 y,
+        uint256 denominator
+    ) internal pure returns (uint256 result) {
+        unchecked {
+            // 512-bit multiply [prod1 prod0] = x * y. Compute the product mod 2^256 and mod 2^256 - 1, then use
+            // use the Chinese Remainder Theorem to reconstruct the 512 bit result. The result is stored in two 256
+            // variables such that product = prod1 * 2^256 + prod0.
+<span class="cstat-no" title="statement not covered" >            uint256 prod0;</span> // Least significant 256 bits of the product
+<span class="cstat-no" title="statement not covered" >            uint256 prod1;</span> // Most significant 256 bits of the product
+            assembly {
+                let mm := mulmod(x, y, not(0))
+                prod0 := mul(x, y)
+                prod1 := sub(sub(mm, prod0), lt(mm, prod0))
+            }
+&nbsp;
+            // Handle non-overflow cases, 256 by 256 division.
+<span class="cstat-no" title="statement not covered" >            if (prod1 == 0) {</span>
+<span class="cstat-no" title="statement not covered" >                return prod0 / denominator;</span>
+            }
+&nbsp;
+            // Make sure the result is less than 2^256. Also prevents denominator == 0.
+<span class="cstat-no" title="statement not covered" >            require(denominator &gt; prod1)</span>;
+&nbsp;
+            ///////////////////////////////////////////////
+            // 512 by 256 division.
+            ///////////////////////////////////////////////
+&nbsp;
+            // Make division exact by subtracting the remainder from [prod1 prod0].
+<span class="cstat-no" title="statement not covered" >            uint256 remainder;</span>
+            assembly {
+                // Compute remainder using mulmod.
+                remainder := mulmod(x, y, denominator)
+&nbsp;
+                // Subtract 256 bit number from 512 bit number.
+                prod1 := sub(prod1, gt(remainder, prod0))
+                prod0 := sub(prod0, remainder)
+            }
+&nbsp;
+            // Factor powers of two out of denominator and compute largest power of two divisor of denominator. Always &gt;= 1.
+            // See https://cs.stackexchange.com/q/138556/92363.
+&nbsp;
+            // Does not overflow because the denominator cannot be zero at this stage in the function.
+<span class="cstat-no" title="statement not covered" >            uint256 twos = denominator &amp; (~denominator + 1);</span>
+            assembly {
+                // Divide denominator by twos.
+                denominator := div(denominator, twos)
+&nbsp;
+                // Divide [prod1 prod0] by twos.
+                prod0 := div(prod0, twos)
+&nbsp;
+                // Flip twos such that it is 2^256 / twos. If twos is zero, then it becomes one.
+                twos := add(div(sub(0, twos), twos), 1)
+            }
+&nbsp;
+            // Shift in bits from prod1 into prod0.
+<span class="cstat-no" title="statement not covered" >            prod0 |= prod1 * twos</span>;
+&nbsp;
+            // Invert denominator mod 2^256. Now that denominator is an odd number, it has an inverse modulo 2^256 such
+            // that denominator * inv = 1 mod 2^256. Compute the inverse by starting with a seed that is correct for
+            // four bits. That is, denominator * inv = 1 mod 2^4.
+<span class="cstat-no" title="statement not covered" >            uint256 inverse = (3 * denominator) ^ 2;</span>
+&nbsp;
+            // Use the Newton-Raphson iteration to improve the precision. Thanks to Hensel's lifting lemma, this also works
+            // in modular arithmetic, doubling the correct bits in each step.
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^8
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^16
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^32
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^64
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^128
+<span class="cstat-no" title="statement not covered" >            inverse *= 2 - denominator * inverse</span>; // inverse mod 2^256
+&nbsp;
+            // Because the division is now exact we can divide by multiplying with the modular inverse of denominator.
+            // This will give us the correct result modulo 2^256. Since the preconditions guarantee that the outcome is
+            // less than 2^256, this is the final result. We don't need to compute the high bits of the result and prod1
+            // is no longer required.
+<span class="cstat-no" title="statement not covered" >            result = prod0 * inverse</span>;
+<span class="cstat-no" title="statement not covered" >            return result;</span>
+        }
+    }
+&nbsp;
+    /**
+     * @notice Calculates x * y / denominator with full precision, following the selected rounding direction.
+     */
+<span class="fstat-no" title="function not covered" >    function mulDiv(</span>
+        uint256 x,
+        uint256 y,
+        uint256 denominator,
+        Rounding rounding
+    ) internal pure returns (uint256) {
+<span class="cstat-no" title="statement not covered" >        uint256 result = mulDiv(x, y, denominator);</span>
+<span class="cstat-no" title="statement not covered" >        if (rounding == Rounding.Up &amp;&amp; mulmod(x, y, denominator) &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            result += 1</span>;
+        }
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+    }
+&nbsp;
+    /**
+     * @dev Returns the square root of a number. If the number is not a perfect square, the value is rounded down.
+     *
+     * Inspired by Henry S. Warren, Jr.'s "Hacker's Delight" (Chapter 11).
+     */
+<span class="fstat-no" title="function not covered" >    function sqrt(uint256 a) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        if (a == 0) {</span>
+<span class="cstat-no" title="statement not covered" >            return 0;</span>
+        }
+&nbsp;
+        // For our first guess, we get the biggest power of 2 which is smaller than the square root of the target.
+        //
+        // We know that the "msb" (most significant bit) of our target number `a` is a power of 2 such that we have
+        // `msb(a) &lt;= a &lt; 2*msb(a)`. This value can be written `msb(a)=2**k` with `k=log2(a)`.
+        //
+        // This can be rewritten `2**log2(a) &lt;= a &lt; 2**(log2(a) + 1)`
+        // → `sqrt(2**k) &lt;= sqrt(a) &lt; sqrt(2**(k+1))`
+        // → `2**(k/2) &lt;= sqrt(a) &lt; 2**((k+1)/2) &lt;= 2**(k/2 + 1)`
+        //
+        // Consequently, `2**(log2(a) / 2)` is a good first approximation of `sqrt(a)` with at least 1 correct bit.
+<span class="cstat-no" title="statement not covered" >        uint256 result = 1 &lt;&lt; (log2(a) &gt;&gt; 1);</span>
+&nbsp;
+        // At this point `result` is an estimation with one bit of precision. We know the true value is a uint128,
+        // since it is the square root of a uint256. Newton's method converges quadratically (precision doubles at
+        // every iteration). We thus need at most 7 iteration to turn our partial result with one bit of precision
+        // into the expected uint128 result.
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            result = (result + a / result) &gt;&gt; 1</span>;
+<span class="cstat-no" title="statement not covered" >            return min(result, a / result);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @notice Calculates sqrt(a), following the selected rounding direction.
+     */
+<span class="fstat-no" title="function not covered" >    function sqrt(uint256 a, Rounding rounding) internal pure returns (uint256) {</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            uint256 result = sqrt(a);</span>
+<span class="cstat-no" title="statement not covered" >            return result + (rounding == Rounding.Up &amp;&amp; result * result &lt; a ? 1 : 0);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 2, rounded down, of a positive value.
+     * Returns 0 if given 0.
+     */
+<span class="fstat-no" title="function not covered" >    function log2(uint256 value) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        uint256 result = 0;</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 128 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 128</span>;
+<span class="cstat-no" title="statement not covered" >                result += 128</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 64 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 64</span>;
+<span class="cstat-no" title="statement not covered" >                result += 64</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 32 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 32</span>;
+<span class="cstat-no" title="statement not covered" >                result += 32</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 16 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 16</span>;
+<span class="cstat-no" title="statement not covered" >                result += 16</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 8 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 8</span>;
+<span class="cstat-no" title="statement not covered" >                result += 8</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 4 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 4</span>;
+<span class="cstat-no" title="statement not covered" >                result += 4</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 2 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 2</span>;
+<span class="cstat-no" title="statement not covered" >                result += 2</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 1 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                result += 1</span>;
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 2, following the selected rounding direction, of a positive value.
+     * Returns 0 if given 0.
+     */
+<span class="fstat-no" title="function not covered" >    function log2(uint256 value, Rounding rounding) internal pure returns (uint256) {</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            uint256 result = log2(value);</span>
+<span class="cstat-no" title="statement not covered" >            return result + (rounding == Rounding.Up &amp;&amp; 1 &lt;&lt; result &lt; value ? 1 : 0);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 10, rounded down, of a positive value.
+     * Returns 0 if given 0.
+     */
+<span class="fstat-no" title="function not covered" >    function log10(uint256 value) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        uint256 result = 0;</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**64) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**64</span>;
+<span class="cstat-no" title="statement not covered" >                result += 64</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**32) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**32</span>;
+<span class="cstat-no" title="statement not covered" >                result += 32</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**16) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**16</span>;
+<span class="cstat-no" title="statement not covered" >                result += 16</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**8) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**8</span>;
+<span class="cstat-no" title="statement not covered" >                result += 8</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**4) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**4</span>;
+<span class="cstat-no" title="statement not covered" >                result += 4</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**2) {</span>
+<span class="cstat-no" title="statement not covered" >                value /= 10**2</span>;
+<span class="cstat-no" title="statement not covered" >                result += 2</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;= 10**1) {</span>
+<span class="cstat-no" title="statement not covered" >                result += 1</span>;
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 10, following the selected rounding direction, of a positive value.
+     * Returns 0 if given 0.
+     */
+<span class="fstat-no" title="function not covered" >    function log10(uint256 value, Rounding rounding) internal pure returns (uint256) {</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            uint256 result = log10(value);</span>
+<span class="cstat-no" title="statement not covered" >            return result + (rounding == Rounding.Up &amp;&amp; 10**result &lt; value ? 1 : 0);</span>
+        }
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 256, rounded down, of a positive value.
+     * Returns 0 if given 0.
+     *
+     * Adding one to the result gives the number of pairs of hex symbols needed to represent `value` as a hex string.
+     */
+<span class="fstat-no" title="function not covered" >    function log256(uint256 value) internal pure returns (uint256) {</span>
+<span class="cstat-no" title="statement not covered" >        uint256 result = 0;</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 128 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 128</span>;
+<span class="cstat-no" title="statement not covered" >                result += 16</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 64 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 64</span>;
+<span class="cstat-no" title="statement not covered" >                result += 8</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 32 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 32</span>;
+<span class="cstat-no" title="statement not covered" >                result += 4</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 16 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                value &gt;&gt;= 16</span>;
+<span class="cstat-no" title="statement not covered" >                result += 2</span>;
+            }
+<span class="cstat-no" title="statement not covered" >            if (value &gt;&gt; 8 &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                result += 1</span>;
+            }
+        }
+<span class="cstat-no" title="statement not covered" >        return result;</span>
+    }
+&nbsp;
+    /**
+     * @dev Return the log in base 10, following the selected rounding direction, of a positive value.
+     * Returns 0 if given 0.
+     */
+<span class="fstat-no" title="function not covered" >    function log256(uint256 value, Rounding rounding) internal pure returns (uint256) {</span>
+        unchecked {
+<span class="cstat-no" title="statement not covered" >            uint256 result = log256(value);</span>
+<span class="cstat-no" title="statement not covered" >            return result + (rounding == Rounding.Up &amp;&amp; 1 &lt;&lt; (result * 8) &lt; value ? 1 : 0);</span>
+        }
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Sep 29 2022 08:23:05 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

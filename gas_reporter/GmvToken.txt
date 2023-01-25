@@ -1,0 +1,170 @@
+Using network 'test'.
+
+
+Compiling your contracts...
+===========================
+> Everything is up to date, there is nothing to compile.
+
+  Contract: GhostMcAfeeVision Token (GMV)
+    ✓ has a name
+    ✓ has a symbol
+    ✓ has 18 decimals
+    ✓ can renew super minter (29012 gas)
+    ✓ only super user can renew super minter
+    total supply
+      ✓ returns the total amount of tokens
+    balanceOf
+      when the requested account has no tokens
+        ✓ returns zero
+      when the requested account has some tokens
+        ✓ returns the total amount of tokens
+    transfer
+      when the recipient is not the zero address
+        when the sender does not have enough balance
+          ✓ reverts
+        when the sender transfers all balance
+          ✓ transfers the requested amount (46562 gas)
+          ✓ emits a transfer event (46562 gas)
+        when the sender transfers zero tokens
+          ✓ transfers the requested amount (28650 gas)
+          ✓ emits a transfer event (28650 gas)
+      when the recipient is the zero address
+        ✓ reverts
+    transfer from
+      when the token owner is not the zero address
+        when the recipient is not the zero address
+          when the spender has enough allowance
+            when the token owner has enough balance
+              ✓ transfers the requested amount (49571 gas)
+              ✓ decreases the spender allowance (49571 gas)
+              ✓ emits a transfer event (49571 gas)
+              ✓ emits an approval event (49571 gas)
+            when the token owner does not have enough balance
+              ✓ reverts
+          when the spender does not have enough allowance
+            when the token owner has enough balance
+              ✓ reverts
+            when the token owner does not have enough balance
+              ✓ reverts
+          when the spender has unlimited allowance
+            ✓ does not decrease the spender allowance (54147 gas)
+            ✓ does not emit an approval event (54147 gas)
+        when the recipient is the zero address
+          ✓ reverts
+      when the token owner is the zero address
+        ✓ reverts
+    approve
+      when the spender is not the zero address
+        when the sender has enough balance
+          ✓ emits an approval event (46219 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46219 gas)
+          when the spender had an approved amount
+            ✓ approves the requested amount and replaces the previous one (29119 gas)
+        when the sender does not have enough balance
+          ✓ emits an approval event (46219 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46219 gas)
+          when the spender had an approved amount
+            ✓ approves the requested amount and replaces the previous one (29119 gas)
+      when the spender is the zero address
+        ✓ reverts
+    decrease allowance
+      when the spender is not the zero address
+        when the sender has enough balance
+          when there was no approved amount before
+            ✓ reverts
+          when the spender had an approved amount
+            ✓ emits an approval event (24494 gas)
+            ✓ decreases the spender allowance subtracting the requested amount (29294 gas)
+            ✓ sets the allowance to zero when all allowance is removed (24494 gas)
+            ✓ reverts when more than the full allowance is removed
+        when the sender does not have enough balance
+          when there was no approved amount before
+            ✓ reverts
+          when the spender had an approved amount
+            ✓ emits an approval event (24494 gas)
+            ✓ decreases the spender allowance subtracting the requested amount (29294 gas)
+            ✓ sets the allowance to zero when all allowance is removed (24494 gas)
+            ✓ reverts when more than the full allowance is removed
+      when the spender is the zero address
+        ✓ reverts
+    increase allowance
+      when the spender is not the zero address
+        when the sender has enough balance
+          ✓ emits an approval event (46484 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46484 gas)
+          when the spender had an approved amount
+            ✓ increases the spender allowance adding the requested amount (29384 gas)
+        when the sender does not have enough balance
+          ✓ emits an approval event (46484 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46484 gas)
+          when the spender had an approved amount
+            ✓ increases the spender allowance adding the requested amount (29384 gas)
+      when the spender is the zero address
+        ✓ reverts
+    _mint
+      ✓ rejects a null account
+      for a non zero account
+        ✓ increments totalSupply
+        ✓ increments recipient balance
+        ✓ emits Transfer event
+    _transfer
+      when the recipient is not the zero address
+        when the sender does not have enough balance
+          ✓ reverts
+        when the sender transfers all balance
+          ✓ transfers the requested amount (46562 gas)
+          ✓ emits a transfer event (46562 gas)
+        when the sender transfers zero tokens
+          ✓ transfers the requested amount (28650 gas)
+          ✓ emits a transfer event (28650 gas)
+      when the recipient is the zero address
+        ✓ reverts
+    _approve
+      when the spender is not the zero address
+        when the sender has enough balance
+          ✓ emits an approval event (46219 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46219 gas)
+          when the spender had an approved amount
+            ✓ approves the requested amount and replaces the previous one (29119 gas)
+        when the sender does not have enough balance
+          ✓ emits an approval event (46219 gas)
+          when there was no approved amount before
+            ✓ approves the requested amount (46219 gas)
+          when the spender had an approved amount
+            ✓ approves the requested amount and replaces the previous one (29119 gas)
+      when the spender is the zero address
+        ✓ reverts
+
+·-------------------------------------------|---------------------------|--------------|----------------------------·
+|    [90mSolc version: 0.8.4+commit.c7e474f2[39m    ·  [90mOptimizer enabled: true[39m  ·  [90mRuns: 1337[39m  ·  [90mBlock limit: 6718946 gas[39m  │
+············································|···························|··············|·····························
+|  [32m[1mMethods[22m[39m                                                                                                          │
+······················|·····················|·············|·············|··············|··············|··············
+|  [1mContract[22m           ·  [1mMethod[22m             ·  [32mMin[39m        ·  [32mMax[39m        ·  [32mAvg[39m         ·  [1m# calls[22m     ·  [1meur (avg)[22m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  approve            ·      [36m29119[39m  ·      [31m46591[39m  ·       43603  ·          [90m52[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  decreaseAllowance  ·      [36m24494[39m  ·      [31m29294[39m  ·       26094  ·          [90m12[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  increaseAllowance  ·      [36m29384[39m  ·      [31m46484[39m  ·       40784  ·          [90m12[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  mint               ·      [36m53253[39m  ·      [31m70353[39m  ·       69226  ·          [90m91[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  renewSuperMinter   ·          -  ·          -  ·       29012  ·           [90m2[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  transfer           ·      [36m28650[39m  ·      [31m51362[39m  ·       40357  ·          [90m20[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [90mGhostMcAfeeVision[39m  ·  transferFrom       ·      [36m49571[39m  ·      [31m54147[39m  ·       51096  ·          [90m12[39m  ·          [32m[90m-[32m[39m  │
+······················|·····················|·············|·············|··············|··············|··············
+|  [32m[1mDeployments[22m[39m                              ·                                          ·  [1m% of limit[22m  ·             │
+············································|·············|·············|··············|··············|··············
+|  GhostMcAfeeVision                        ·          -  ·          -  ·      775059  ·      [90m11.5 %[39m  ·          [32m[90m-[32m[39m  │
+·-------------------------------------------|-------------|-------------|--------------|--------------|-------------·
+
+  67 passing (5m)
+

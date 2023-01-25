@@ -1,0 +1,149 @@
+Compilation warnings/errors on contracts/EnviousHouse.sol:
+Warning: Function state mutability can be restricted to view
+   --> contracts/EnviousHouse.sol:644:2:
+    |
+644 | 	function _checkEnvious(address collection) private {
+    | 	^ (Relevant source part starts here and spans across multiple lines).
+
+Warning: Contract code size exceeds 24576 bytes (a limit introduced in Spurious Dragon). This contract may not be deployable on mainnet. Consider enabling the optimizer (with a low "runs" value!), turning off revert strings, or using libraries.
+  --> contracts/EnviousHouse.sol:29:1:
+   |
+29 | contract EnviousHouse is Context, IEnviousHouse {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+
+
+[92m
+EnviousHouse.constructor(address,uint256).blackHoleAddress (contracts/EnviousHouse.sol#85) lacks a zero-check on :
+		- _blackHole = blackHoleAddress (contracts/EnviousHouse.sol#87)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation[0m
+[92m
+EnviousHouse.getAmount(address,uint256,address) (contracts/EnviousHouse.sol#415-430) has external calls inside a loop: IERC721(collection).supportsInterface(type()(IERC721Envious).interfaceId) (contracts/EnviousHouse.sol#422)
+EnviousHouse.getAmount(address,uint256,address) (contracts/EnviousHouse.sol#415-430) has external calls inside a loop: IERC721Envious(collection).getAmount(amount,tokenAddress) (contracts/EnviousHouse.sol#423)
+EnviousHouse.getAmount(address,uint256,address) (contracts/EnviousHouse.sol#415-430) has external calls inside a loop: circulatingSupply = IERC20(_communityToken[collection]).totalSupply() - IERC20(_communityToken[collection]).balanceOf(_blackHole) (contracts/EnviousHouse.sol#425-427)
+EnviousHouse._scaledAmount(address,address) (contracts/EnviousHouse.sol#462-484) has external calls inside a loop: defaultDecimals = 10 ** IERC20Metadata(_communityToken[collection]).decimals() (contracts/EnviousHouse.sol#465)
+EnviousHouse._scaledAmount(address,address) (contracts/EnviousHouse.sol#462-484) has external calls inside a loop: innerDecimals = 10 ** IERC20Metadata(_communityPool[collection][i]).decimals() (contracts/EnviousHouse.sol#468-470)
+Address.functionCallWithValue(address,bytes,uint256,string) (contracts/openzeppelin/utils/Address.sol#128-137) has external calls inside a loop: (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+Address.sendValue(address,uint256) (contracts/openzeppelin/utils/Address.sol#60-65) has external calls inside a loop: (success) = recipient.call{value: amount}() (contracts/openzeppelin/utils/Address.sol#63)
+EnviousHouse._addTokenCollateral(address,uint256,uint256,address,bool) (contracts/EnviousHouse.sol#509-536) has external calls inside a loop: require(bool,string)(IERC721(collection).ownerOf(tokenId) != address(0),INVALID_TOKEN_ID) (contracts/EnviousHouse.sol#517)
+EnviousHouse._disperse(address,address,uint256) (contracts/EnviousHouse.sol#613-632) has external calls inside a loop: balance = _disperseBalance[collection][tokenAddress] / IERC721Enumerable(collection).totalSupply() (contracts/EnviousHouse.sol#614)
+EnviousHouse._checkValidity(address) (contracts/EnviousHouse.sol#590-594) has external calls inside a loop: require(bool,string)(IERC20Metadata(tokenAddress).decimals() != type()(uint8).max,NO_DECIMALS) (contracts/EnviousHouse.sol#592)
+EnviousHouse._removeTokenCollateral(address,uint256,uint256,address) (contracts/EnviousHouse.sol#538-566) has external calls inside a loop: require(bool,string)(IERC721(collection).ownerOf(tokenId) == _msgSender(),NOT_TOKEN_OWNER) (contracts/EnviousHouse.sol#544)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop[0m
+[92m
+Reentrancy in EnviousHouse.claimDiscountedCollateral(address,uint256,uint256[]) (contracts/EnviousHouse.sol#390-413):
+	External calls:
+	- payout = INoteKeeper(_ghostBondingAddress).redeem(address(this),indexes,true) (contracts/EnviousHouse.sol#407)
+	State variables written after the call(s):
+	- _bondPayouts[collection][tokenId] -= payout (contracts/EnviousHouse.sol#410)
+Reentrancy in EnviousHouse.getDiscountedCollateral(address,uint256,address,uint256,uint256,uint256) (contracts/EnviousHouse.sol#357-388):
+	External calls:
+	- IERC20(quoteToken).safeTransferFrom(_msgSender(),address(this),amount) (contracts/EnviousHouse.sol#373)
+	- IERC20(quoteToken).safeApprove(_ghostBondingAddress,amount) (contracts/EnviousHouse.sol#374)
+	- (payout,index) = IBondDepository(_ghostBondingAddress).deposit(bondId,amount,maxPrice,address(this),address(this)) (contracts/EnviousHouse.sol#376-382)
+	State variables written after the call(s):
+	- _bondIndexes[collection][tokenId].push(index) (contracts/EnviousHouse.sol#386)
+	- _bondPayouts[collection][tokenId] += payout (contracts/EnviousHouse.sol#385)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2[0m
+[92m
+Reentrancy in EnviousHouse._addTokenCollateral(address,uint256,uint256,address,bool) (contracts/EnviousHouse.sol#509-536):
+	External calls:
+	- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/EnviousHouse.sol#532)
+	Event emitted after the call(s):
+	- Collateralized(collection,tokenId,amount,tokenAddress) (contracts/EnviousHouse.sol#535)
+Reentrancy in EnviousHouse._disperseTokenCollateral(address,uint256,address) (contracts/EnviousHouse.sol#568-588):
+	External calls:
+	- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/EnviousHouse.sol#584)
+	Event emitted after the call(s):
+	- Dispersed(collection,tokenAddress,amount) (contracts/EnviousHouse.sol#587)
+Reentrancy in EnviousHouse._harvest(address,uint256,address) (contracts/EnviousHouse.sol#486-507):
+	External calls:
+	- Address.sendValue(address(_msgSender()),scaledAmount) (contracts/EnviousHouse.sol#498)
+	- IERC20(tokenAddress).safeTransfer(_msgSender(),scaledAmount) (contracts/EnviousHouse.sol#500)
+	- IERC20(_communityToken[collection]).safeTransferFrom(_msgSender(),_blackHole,amount) (contracts/EnviousHouse.sol#504)
+	Event emitted after the call(s):
+	- Harvested(collection,tokenAddress,amount,scaledAmount) (contracts/EnviousHouse.sol#506)
+Reentrancy in EnviousHouse._removeTokenCollateral(address,uint256,uint256,address) (contracts/EnviousHouse.sol#538-566):
+	External calls:
+	- Address.sendValue(address(_msgSender()),ownerBalance) (contracts/EnviousHouse.sol#560)
+	- IERC20(tokenAddress).safeTransfer(_msgSender(),ownerBalance) (contracts/EnviousHouse.sol#562)
+	Event emitted after the call(s):
+	- Uncollateralized(collection,tokenId,ownerBalance,tokenAddress) (contracts/EnviousHouse.sol#565)
+Reentrancy in EnviousHouse.claimDiscountedCollateral(address,uint256,uint256[]) (contracts/EnviousHouse.sol#390-413):
+	External calls:
+	- payout = INoteKeeper(_ghostBondingAddress).redeem(address(this),indexes,true) (contracts/EnviousHouse.sol#407)
+	- _addTokenCollateral(collection,tokenId,payout,_ghostAddress,true) (contracts/EnviousHouse.sol#411)
+		- returndata = address(token).functionCall(data,SafeERC20: low-level call failed) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#110)
+		- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+		- IERC20(tokenAddress).safeTransferFrom(_msgSender(),address(this),amount) (contracts/EnviousHouse.sol#532)
+	External calls sending eth:
+	- _addTokenCollateral(collection,tokenId,payout,_ghostAddress,true) (contracts/EnviousHouse.sol#411)
+		- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+	Event emitted after the call(s):
+	- Collateralized(collection,tokenId,amount,tokenAddress) (contracts/EnviousHouse.sol#535)
+		- _addTokenCollateral(collection,tokenId,payout,_ghostAddress,true) (contracts/EnviousHouse.sol#411)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3[0m
+[92m
+Address._revert(bytes,string) (contracts/openzeppelin/utils/Address.sol#231-243) uses assembly
+	- INLINE ASM (contracts/openzeppelin/utils/Address.sol#236-239)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage[0m
+[92m
+Different versions of Solidity are used:
+	- Version used: ['^0.8.0', '^0.8.1']
+	- ^0.8.0 (contracts/EnviousHouse.sol#4)
+	- ^0.8.0 (contracts/interfaces/IBondDepository.sol#3)
+	- ^0.8.0 (contracts/interfaces/IERC721Envious.sol#4)
+	- ^0.8.0 (contracts/interfaces/IEnviousHouse.sol#4)
+	- ^0.8.0 (contracts/interfaces/INoteKeeper.sol#3)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/IERC20Metadata.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/token/ERC721/extensions/IERC721Enumerable.sol#4)
+	- ^0.8.1 (contracts/openzeppelin/utils/Address.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/Context.sol#4)
+	- ^0.8.0 (contracts/openzeppelin/utils/introspection/IERC165.sol#4)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used[0m
+[92m
+Address.functionCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#85-87) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256) (contracts/openzeppelin/utils/Address.sol#114-120) is never used and should be removed
+Address.functionDelegateCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#170-172) is never used and should be removed
+Address.functionDelegateCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#180-187) is never used and should be removed
+Address.functionStaticCall(address,bytes) (contracts/openzeppelin/utils/Address.sol#145-147) is never used and should be removed
+Address.functionStaticCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#155-162) is never used and should be removed
+Address.verifyCallResult(bool,bytes,string) (contracts/openzeppelin/utils/Address.sol#219-229) is never used and should be removed
+Context._msgData() (contracts/openzeppelin/utils/Context.sol#21-23) is never used and should be removed
+SafeERC20.safeDecreaseAllowance(IERC20,address,uint256) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#70-81) is never used and should be removed
+SafeERC20.safeIncreaseAllowance(IERC20,address,uint256) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#61-68) is never used and should be removed
+SafeERC20.safePermit(IERC20Permit,address,address,uint256,uint256,uint8,bytes32,bytes32) (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#83-97) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code[0m
+[92m
+Pragma version^0.8.0 (contracts/EnviousHouse.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IBondDepository.sol#3) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IERC721Envious.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/IEnviousHouse.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/interfaces/INoteKeeper.sol#3) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/IERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/IERC20Metadata.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC20/utils/SafeERC20.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/IERC721.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/token/ERC721/extensions/IERC721Enumerable.sol#4) allows old versions
+Pragma version^0.8.1 (contracts/openzeppelin/utils/Address.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/Context.sol#4) allows old versions
+Pragma version^0.8.0 (contracts/openzeppelin/utils/introspection/IERC165.sol#4) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity[0m
+[92m
+Low level call in Address.sendValue(address,uint256) (contracts/openzeppelin/utils/Address.sol#60-65):
+	- (success) = recipient.call{value: amount}() (contracts/openzeppelin/utils/Address.sol#63)
+Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (contracts/openzeppelin/utils/Address.sol#128-137):
+	- (success,returndata) = target.call{value: value}(data) (contracts/openzeppelin/utils/Address.sol#135)
+Low level call in Address.functionStaticCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#155-162):
+	- (success,returndata) = target.staticcall(data) (contracts/openzeppelin/utils/Address.sol#160)
+Low level call in Address.functionDelegateCall(address,bytes,string) (contracts/openzeppelin/utils/Address.sol#180-187):
+	- (success,returndata) = target.delegatecall(data) (contracts/openzeppelin/utils/Address.sol#185)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls[0m
+[92m
+Function IERC20Permit.DOMAIN_SEPARATOR() (contracts/openzeppelin/token/ERC20/extensions/draft-IERC20Permit.sol#59) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions[0m
+contracts/EnviousHouse.sol analyzed (14 contracts with 78 detectors), 51 result(s) found

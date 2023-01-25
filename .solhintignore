@@ -1,0 +1,8 @@
+node_modules/
+contracts/openzeppelin/
+contracts/chainlink/
+contracts/mocks/
+contracts/Migrations.sol
+contracts/interfaces/IBondDepository.sol
+contracts/interfaces/INoteKeeper.sol
+

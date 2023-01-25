@@ -1,0 +1,2048 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/EnviousHouse.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> EnviousHouse.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.23% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>204/212</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84.62% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>110/130</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.44% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>38/39</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.26% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>206/214</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">120×</span>
+<span class="cline-any cline-yes">112×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">52×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">38×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">152×</span>
+<span class="cline-any cline-yes">152×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">152×</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">79×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">156×</span>
+<span class="cline-any cline-yes">114×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-yes">110×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: MIT
+// GhostContracts (last updated v0.3.0) (EnviuosHouse.sol)
+&nbsp;
+pragma solidity ^0.8.0;
+&nbsp;
+import "./openzeppelin/token/ERC20/utils/SafeERC20.sol";
+import "./openzeppelin/token/ERC20/IERC20.sol";
+import "./openzeppelin/token/ERC20/extensions/IERC20Metadata.sol";
+import "./openzeppelin/token/ERC721/extensions/IERC721Enumerable.sol";
+import "./openzeppelin/utils/Address.sol";
+import "./openzeppelin/utils/Context.sol";
+&nbsp;
+import "./interfaces/IEnviousHouse.sol";
+import "./interfaces/IERC721Envious.sol";
+import "./interfaces/IBondDepository.sol";
+import "./interfaces/INoteKeeper.sol";
+&nbsp;
+/**
+ * @title EnviousHouse is contract for any NFT to be collateralized.
+ *
+ * @author F4T50 @ghostown
+ * @author 571nkY @ghostown
+ * @author 5Tr3TcH @ghostown
+ *
+ * @dev The main idea is to maintain any existant ERC721-based token. For any new Envious NFT this smart contract 
+ * is optionally needed, only for registration purposes. That's why all Envious functionality is re-routed if 
+ * functionality exists and otherwise duplicating it here.
+ */
+contract EnviousHouse is Context, IEnviousHouse {
+	using SafeERC20 for IERC20;
+&nbsp;
+	uint256 private _totalCollections;
+	address private _initializor;
+&nbsp;
+	uint256 public immutable registerAmount;
+&nbsp;
+	address private _ghostAddress;
+	address private _ghostBondingAddress;
+	address private _blackHole;
+	
+	mapping(address =&gt; uint256[2]) private _commissions;
+	mapping(address =&gt; address) private _communityToken;
+	mapping(address =&gt; address[]) private _communityPool;
+	mapping(address =&gt; mapping(address =&gt; uint256)) private _communityBalance;
+&nbsp;
+	mapping(address =&gt; address[]) private _disperseTokens;
+	mapping(address =&gt; mapping(address =&gt; uint256)) private _disperseBalance;
+	mapping(address =&gt; mapping(address =&gt; uint256)) private _disperseTotalTaken;
+	mapping(address =&gt; mapping(uint256 =&gt; mapping(address =&gt; uint256))) private _disperseTaken;
+&nbsp;
+	mapping(address =&gt; mapping(uint256 =&gt; uint256)) private _bondPayouts;
+	mapping(address =&gt; mapping(uint256 =&gt; uint256[])) private _bondIndexes;
+&nbsp;
+	mapping(address =&gt; mapping(uint256 =&gt; address[])) private _collateralTokens;
+	mapping(address =&gt; mapping(uint256 =&gt; mapping(address =&gt; uint256))) private _collateralBalances;
+	
+	mapping(uint256 =&gt; address) public override collections;
+	mapping(address =&gt; uint256) public override collectionIds;
+	mapping(address =&gt; bool) public override specificCollections;
+&nbsp;
+	// solhint-disable-next-line
+	string private constant NO_DECIMALS = "no decimals";
+	// solhint-disable-next-line
+	string private constant LOW_AMOUNT = "low amount";
+	// solhint-disable-next-line
+	string private constant NOT_TOKEN_OWNER = "not token owner";
+	// solhint-disable-next-line
+	string private constant INVALID_TOKEN_ID = "invalid tokenId";
+	// solhint-disable-next-line
+	string private constant EMPTY_GHOST = "ghst address is empty";
+	// solhint-disable-next-line
+	string private constant LENGTHS_NOT_MATCH = "lengths not match";
+	// solhint-disable-next-line
+	string private constant ZERO_COMMUNITY_TOKEN = "no community token provided";
+	// solhint-disable-next-line
+	string private constant COLLECTION_EXISTS = "collection exists";
+	// solhint-disable-next-line
+	string private constant COLLECTION_NOT_EXISTS = "collection not exists";
+	// solhint-disable-next-line
+	string private constant INVALID_COLLECTION = "invalid collection address";
+	// solhint-disable-next-line
+	string private constant NO_TOKENS_MINTED = "no tokens minted";
+	// solhint-disable-next-line
+	string private constant ALREADY_ENVIOUS = "already envious";
+&nbsp;
+	constructor (address blackHoleAddress, uint256 minimalEthAmount) {
+		_initializor = _msgSender();
+		_blackHole = blackHoleAddress;
+&nbsp;
+		registerAmount = minimalEthAmount;
+	}
+&nbsp;
+	function totalCollections() external view override returns (uint256) {
+		return _totalCollections;
+	}
+&nbsp;
+	function ghostAddress(address collection) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).ghostAddress();
+		} else {
+			return _ghostAddress;
+		}
+	}
+&nbsp;
+	function ghostBondingAddress(address collection) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).ghostBondingAddress();
+		} else {
+			return _ghostBondingAddress;
+		}
+	}
+&nbsp;
+	function blackHole(address collection) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).blackHole();
+		} else {
+			return _blackHole;
+		}
+	}
+&nbsp;
+	function commissions(address collection, uint256 index) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).commissions(index);
+		} else {
+			return _commissions[collection][index];
+		}
+	}
+&nbsp;
+	function communityToken(address collection) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).communityToken();
+		} else {
+			return _communityToken[collection];
+		}
+	}
+&nbsp;
+	function communityPool(address collection, uint256 index) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).communityPool(index);
+		} else {
+			return _communityPool[collection][index];
+		}
+	}
+&nbsp;
+	function communityBalance(
+		address collection, 
+		address tokenAddress
+	) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).communityBalance(tokenAddress);
+		} else {
+			return _communityBalance[collection][tokenAddress];
+		}
+	}
+&nbsp;
+	function disperseTokens(
+		address collection, 
+		uint256 index
+	) external view override returns (address) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).disperseTokens(index);
+		} else {
+			return _disperseTokens[collection][index];
+		}
+	}
+&nbsp;
+	function disperseBalance(
+		address collection, 
+		address tokenAddress
+	) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).disperseBalance(tokenAddress);
+		} else {
+			return _disperseBalance[collection][tokenAddress];
+		}
+	}
+&nbsp;
+	function disperseTotalTaken(
+		address collection, 
+		address tokenAddress
+	) external view override returns (uint256) {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+<span class="cstat-no" title="statement not covered" >			return IERC721Envious(collection).disperseTotalTaken(tokenAddress);</span>
+		} else {
+			return _disperseTotalTaken[collection][tokenAddress];
+		}
+	}
+&nbsp;
+	function disperseTaken(
+		address collection, 
+		uint256 tokenId,
+		address tokenAddress
+	) external view override returns (uint256) {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+<span class="cstat-no" title="statement not covered" >			return IERC721Envious(collection).disperseTaken(tokenId, tokenAddress);</span>
+		} else {
+			return _disperseTaken[collection][tokenId][tokenAddress];
+		}
+	}
+&nbsp;
+	function bondPayouts(address collection, uint256 tokenId) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).bondPayouts(tokenId);
+		} else {
+			return _bondPayouts[collection][tokenId];
+		}
+	}
+&nbsp;
+	function collateralTokens(
+		address collection, 
+		uint256 tokenId,
+		uint256 index
+	) external view override returns (address) {
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+<span class="cstat-no" title="statement not covered" >			return IERC721Envious(collection).collateralTokens(tokenId, index);</span>
+		} else {
+			return _collateralTokens[collection][tokenId][index];
+		}
+	}
+&nbsp;
+	function collateralBalances(
+		address collection, 
+		uint256 tokenId,
+		address tokenAddress
+	) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).collateralBalances(tokenId, tokenAddress);
+		} else {
+			return _collateralBalances[collection][tokenId][tokenAddress];
+		}
+	}
+&nbsp;
+	function bondIndexes(
+		address collection, 
+		uint256 tokenId,
+		uint256 index
+	) external view override returns (uint256) {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).bondIndexes(tokenId, index);
+		} else {
+			return _bondIndexes[collection][tokenId][index];
+		}
+	}
+&nbsp;
+	function setGhostAddresses(address ghostToken, address ghostBonding) external override {
+		// solhint-disable-next-line
+		require(_initializor == _msgSender() &amp;&amp; ghostToken != address(0) &amp;&amp; ghostBonding != address(0));
+&nbsp;
+		_ghostAddress = ghostToken;
+		_ghostBondingAddress = ghostBonding;
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function setSpecificCollection(address collection) external override {</span>
+		// solhint-disable-next-line
+<span class="cstat-no" title="statement not covered" >		require(_initializor == _msgSender() &amp;&amp; collection != address(0))</span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		specificCollections[collection] = true</span>;
+	}
+&nbsp;
+	function registerCollection(
+		address collection, 
+		address token, 
+		uint256 incoming, 
+		uint256 outcoming
+	) external payable override {
+		require(collectionIds[collection] == 0, COLLECTION_EXISTS);
+		require(
+			IERC721(collection).supportsInterface(type(IERC721).interfaceId) ||
+			specificCollections[collection],
+			INVALID_COLLECTION
+		);
+		
+		_rescueCollection(collection);
+&nbsp;
+		if (!IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			require(msg.value &gt;= registerAmount, LOW_AMOUNT);
+			if (incoming != 0 || outcoming != 0) {
+				require(token != address(0), ZERO_COMMUNITY_TOKEN);
+				<span class="missing-if-branch" title="else path not taken" >E</span>require(incoming &lt; 1e5 &amp;&amp; outcoming &lt; 1e5, LOW_AMOUNT);
+&nbsp;
+				_commissions[collection][0] = incoming;
+				_commissions[collection][1] = outcoming;
+				_communityToken[collection] = token;
+			}
+&nbsp;
+			_disperseTokenCollateral(collection, msg.value, address(0));
+		}
+	}
+&nbsp;
+	function harvest(
+		address collection, 
+		uint256[] memory amounts, 
+		address[] memory tokenAddresses
+	) external override {
+		require(collectionIds[collection] != 0, COLLECTION_NOT_EXISTS);
+		require(amounts.length == tokenAddresses.length, LENGTHS_NOT_MATCH);
+		
+		_checkEnvious(collection);
+&nbsp;
+		for (uint256 i = 0; i &lt; tokenAddresses.length; i++) {
+			_harvest(collection, amounts[i], tokenAddresses[i]);
+		}
+	}
+&nbsp;
+	function collateralize(
+		address collection, 
+		uint256 tokenId, 
+		uint256[] memory amounts, 
+		address[] memory tokenAddresses
+	) external payable override {
+		require(amounts.length == tokenAddresses.length, LENGTHS_NOT_MATCH);
+		
+		_checkEnvious(collection);
+		_rescueCollection(collection);
+&nbsp;
+		uint256 ethAmount = msg.value;
+		
+		for (uint256 i = 0; i &lt; tokenAddresses.length; i++) {
+			if (tokenAddresses[i] == address(0)) {
+				ethAmount -= amounts[i];
+			}
+			_addTokenCollateral(collection, tokenId, amounts[i], tokenAddresses[i], false);
+		}
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (ethAmount &gt; 0) {
+<span class="cstat-no" title="statement not covered" >			Address.sendValue(payable(_msgSender()), ethAmount)</span>;
+		}
+	}
+&nbsp;
+	function uncollateralize(
+		address collection, 
+		uint256 tokenId, 
+		uint256[] memory amounts, 
+		address[] memory tokenAddresses
+	) external override {
+		require(collectionIds[collection] != 0, COLLECTION_NOT_EXISTS);
+		require(amounts.length == tokenAddresses.length, LENGTHS_NOT_MATCH);
+&nbsp;
+		_checkEnvious(collection);
+&nbsp;
+		for (uint256 i = 0; i &lt; tokenAddresses.length; i++) {
+			_removeTokenCollateral(collection, tokenId, amounts[i], tokenAddresses[i]);
+		}
+	}
+&nbsp;
+	function disperse(
+		address collection, 
+		uint256[] memory amounts, 
+		address[] memory tokenAddresses
+	) external payable override {
+		require(amounts.length == tokenAddresses.length, LENGTHS_NOT_MATCH);
+&nbsp;
+		_checkEnvious(collection);
+		_rescueCollection(collection);
+&nbsp;
+		uint256 ethAmount = msg.value;
+		for (uint256 i = 0; i &lt; tokenAddresses.length; i++) {
+			if (tokenAddresses[i] == address(0)) {
+				ethAmount -= amounts[i];
+			}
+			_disperseTokenCollateral(collection, amounts[i], tokenAddresses[i]);
+		}
+&nbsp;
+		<span class="missing-if-branch" title="if path not taken" >I</span>if (ethAmount &gt; 0) {
+<span class="cstat-no" title="statement not covered" >			Address.sendValue(payable(_msgSender()), ethAmount)</span>;
+		}
+	}
+&nbsp;
+	function getDiscountedCollateral(
+		address collection,
+        uint256 bondId,
+        address quoteToken,
+        uint256 tokenId,
+        uint256 amount,
+        uint256 maxPrice
+    ) external override {
+		require(collectionIds[collection] != 0, COLLECTION_NOT_EXISTS);
+&nbsp;
+		_checkEnvious(collection);
+		_rescueCollection(collection);
+&nbsp;
+		// NOTE: this contract is temporary holder of `quoteToken` due to the need of
+		// registration of bond inside. `amount` of `quoteToken`s should be empty in
+		// the end of transaction.
+		IERC20(quoteToken).safeTransferFrom(_msgSender(), address(this), amount);
+		IERC20(quoteToken).safeApprove(_ghostBondingAddress, amount);
+&nbsp;
+		(uint256 payout,, uint256 index) = IBondDepository(_ghostBondingAddress).deposit(
+			bondId,
+			amount,
+			maxPrice,
+			address(this),
+			address(this)
+		);
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (payout &gt; 0) {
+			_bondPayouts[collection][tokenId] += payout;
+			_bondIndexes[collection][tokenId].push(index);
+		}
+    }
+&nbsp;
+	function claimDiscountedCollateral(
+		address collection,
+        uint256 tokenId,
+        uint256[] memory indexes
+    ) external override {
+		require(collectionIds[collection] != 0, COLLECTION_NOT_EXISTS);
+		<span class="missing-if-branch" title="else path not taken" >E</span>require(_ghostAddress != address(0), EMPTY_GHOST);
+&nbsp;
+		_checkEnvious(collection);
+&nbsp;
+		for (uint256 i = 0; i &lt; indexes.length; i++) {
+			uint256 index = _arrayContains(indexes[i], _bondIndexes[collection][tokenId]);
+			uint256 last = _bondIndexes[collection][tokenId].length - 1;
+			_bondIndexes[collection][tokenId][index] = _bondIndexes[collection][tokenId][last];
+			_bondIndexes[collection][tokenId].pop();
+		}
+&nbsp;
+		uint256 payout = INoteKeeper(_ghostBondingAddress).redeem(address(this), indexes, true);
+&nbsp;
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (payout &gt; 0) {
+			_bondPayouts[collection][tokenId] -= payout;
+			_addTokenCollateral(collection, tokenId, payout, _ghostAddress, true);
+		}
+    }
+&nbsp;
+	function getAmount(
+		address collection,
+        uint256 amount,
+        address tokenAddress
+    ) public view override returns (uint256) {
+		<span class="missing-if-branch" title="else path not taken" >E</span>require(collectionIds[collection] != 0, COLLECTION_NOT_EXISTS);
+&nbsp;
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			return IERC721Envious(collection).getAmount(amount, tokenAddress);
+		} else {
+			uint256 circulatingSupply =
+				IERC20(_communityToken[collection]).totalSupply() - 
+				IERC20(_communityToken[collection]).balanceOf(_blackHole);
+			return amount * _scaledAmount(collection, tokenAddress) / circulatingSupply;
+		}
+    }
+&nbsp;
+	function _arrayContains(
+        address tokenAddress,
+        address[] memory findFrom
+    ) private pure returns (bool shouldAppend, uint256 index) {
+        shouldAppend = true;
+        index = type(uint256).max;
+    
+        for (uint256 i = 0; i &lt; findFrom.length; i++) {
+            if (findFrom[i] == tokenAddress) {
+                shouldAppend = false;
+                index = i;
+                break;
+            }
+        }
+    }
+&nbsp;
+	function _arrayContains(
+        uint256 noteId,
+        uint256[] memory findFrom
+    ) private pure returns (uint256 index) {
+        index = type(uint256).max;
+&nbsp;
+        for (uint256 i = 0; i &lt; findFrom.length; i++) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (findFrom[i] == noteId) {
+                index = i;
+                break;
+            }
+        }
+    }
+	
+	function _scaledAmount(address collection, address tokenAddress) private view returns (uint256) {
+        uint256 totalValue = 0;
+        uint256 scaled = 0;
+        uint256 defaultDecimals = 10**IERC20Metadata(_communityToken[collection]).decimals();
+&nbsp;
+        for (uint256 i = 0; i &lt; _communityPool[collection].length; i++) {
+            uint256 innerDecimals = _communityPool[collection][i] == address(0) ? 
+				10**18 : 
+				10**IERC20Metadata(_communityPool[collection][i]).decimals();
+            
+			uint256 tempValue =
+				_communityBalance[collection][_communityPool[collection][i]] * 
+				defaultDecimals / innerDecimals;
+&nbsp;
+            totalValue += tempValue;
+&nbsp;
+            if (_communityPool[collection][i] == tokenAddress) {
+                scaled = tempValue;
+            }
+        }
+&nbsp;
+        return _communityBalance[collection][tokenAddress] * totalValue / scaled;
+    }
+&nbsp;
+	function _harvest(address collection, uint256 amount, address tokenAddress) private {
+        uint256 scaledAmount = getAmount(collection, amount, tokenAddress);
+        _communityBalance[collection][tokenAddress] -= scaledAmount;
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (_communityBalance[collection][tokenAddress] == 0) {
+            (, uint256 index) = _arrayContains(tokenAddress, _communityPool[collection]);
+            _communityPool[collection][index] =
+				_communityPool[collection][_communityPool[collection].length - 1];
+            _communityPool[collection].pop();
+        }
+&nbsp;
+        if (tokenAddress == address(0)) {
+            Address.sendValue(payable(_msgSender()), scaledAmount);
+        } else {
+            IERC20(tokenAddress).safeTransfer(_msgSender(), scaledAmount);
+        }
+&nbsp;
+        // NOTE: not every token implements `burn` function, so that is a littl cheat
+        IERC20(_communityToken[collection]).safeTransferFrom(_msgSender(), _blackHole, amount);
+&nbsp;
+        emit Harvested(collection, tokenAddress, amount, scaledAmount);
+    }
+&nbsp;
+	function _addTokenCollateral(
+		address collection,
+        uint256 tokenId,
+        uint256 amount,
+        address tokenAddress,
+        bool claim
+    ) private {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(amount &gt; 0, LOW_AMOUNT);
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC721(collection).ownerOf(tokenId) != address(0), INVALID_TOKEN_ID);
+&nbsp;
+        _disperse(collection, tokenAddress, tokenId);
+&nbsp;
+        (bool shouldAppend,) = _arrayContains(tokenAddress, _collateralTokens[collection][tokenId]);
+        if (shouldAppend) {
+            _checkValidity(tokenAddress);
+            _collateralTokens[collection][tokenId].push(tokenAddress);
+        }
+&nbsp;
+        uint256 ownerBalance = 
+			_communityCommission(collection, amount, _commissions[collection][0], tokenAddress);
+        _collateralBalances[collection][tokenId][tokenAddress] += ownerBalance;
+&nbsp;
+        if (tokenAddress != address(0) &amp;&amp; !claim) {
+            IERC20(tokenAddress).safeTransferFrom(_msgSender(), address(this), amount);
+        }
+&nbsp;
+        emit Collateralized(collection, tokenId, amount, tokenAddress);
+    }
+&nbsp;
+	function _removeTokenCollateral(
+		address collection,
+        uint256 tokenId,
+        uint256 amount,
+        address tokenAddress
+    ) private {
+        require(IERC721(collection).ownerOf(tokenId) == _msgSender(), NOT_TOKEN_OWNER);
+&nbsp;
+        _disperse(collection, tokenAddress, tokenId);
+&nbsp;
+        _collateralBalances[collection][tokenId][tokenAddress] -= amount;
+        if (_collateralBalances[collection][tokenId][tokenAddress] == 0) {
+            (, uint256 index) = _arrayContains(tokenAddress, _collateralTokens[collection][tokenId]);
+            _collateralTokens[collection][tokenId][index] = 
+				_collateralTokens[collection][tokenId][_collateralTokens[collection][tokenId].length - 1];
+            _collateralTokens[collection][tokenId].pop();
+        }
+&nbsp;
+        uint256 ownerBalance =
+			_communityCommission(collection, amount, _commissions[collection][1], tokenAddress);
+&nbsp;
+        if (tokenAddress == address(0)) {
+            Address.sendValue(payable(_msgSender()), ownerBalance);
+        } else {
+            IERC20(tokenAddress).safeTransfer(_msgSender(), ownerBalance);
+        }
+&nbsp;
+        emit Uncollateralized(collection, tokenId, ownerBalance, tokenAddress);
+    }
+&nbsp;
+	function _disperseTokenCollateral(
+		address collection, 
+		uint256 amount, 
+		address tokenAddress
+	) private {
+        <span class="missing-if-branch" title="else path not taken" >E</span>require(amount &gt; 0, LOW_AMOUNT);
+&nbsp;
+        (bool shouldAppend,) = _arrayContains(tokenAddress, _disperseTokens[collection]);
+        if (shouldAppend) {
+            _checkValidity(tokenAddress);
+            _disperseTokens[collection].push(tokenAddress);
+        }
+&nbsp;
+        _disperseBalance[collection][tokenAddress] += amount;
+&nbsp;
+        if (tokenAddress != address(0)) {
+            IERC20(tokenAddress).safeTransferFrom(_msgSender(), address(this), amount);
+        }
+&nbsp;
+        emit Dispersed(collection, tokenAddress, amount);
+    }
+&nbsp;
+	function _checkValidity(address tokenAddress) private view {
+        if (tokenAddress != address(0)) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>require(IERC20Metadata(tokenAddress).decimals() != type(uint8).max, NO_DECIMALS);
+        }
+    }
+&nbsp;
+	function _communityCommission(
+		address collection,
+        uint256 amount,
+        uint256 percentage,
+        address tokenAddress
+    ) private returns (uint256) {
+        uint256 donation = amount * percentage / 1e5;
+&nbsp;
+        (bool shouldAppend,) = _arrayContains(tokenAddress, _communityPool[collection]);
+        if (shouldAppend &amp;&amp; donation &gt; 0) {
+            _communityPool[collection].push(tokenAddress);
+        }
+&nbsp;
+        _communityBalance[collection][tokenAddress] += donation;
+        return amount - donation;
+    }
+&nbsp;
+	function _disperse(address collection, address tokenAddress, uint256 tokenId) private {
+		uint256 balance = _disperseBalance[collection][tokenAddress] / IERC721Enumerable(collection).totalSupply();
+&nbsp;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (_disperseTotalTaken[collection][tokenAddress] + balance &gt; _disperseBalance[collection][tokenAddress]) {
+<span class="cstat-no" title="statement not covered" >            balance = _disperseBalance[collection][tokenAddress] - _disperseTotalTaken[collection][tokenAddress]</span>;
+        }
+&nbsp;
+        if (balance &gt; _disperseTaken[collection][tokenId][tokenAddress]) {
+            uint256 amount = balance - _disperseTaken[collection][tokenId][tokenAddress];
+            _disperseTaken[collection][tokenId][tokenAddress] += amount;
+&nbsp;
+            (bool shouldAppend,) = _arrayContains(tokenAddress, _collateralTokens[collection][tokenId]);
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (shouldAppend) {
+                _collateralTokens[collection][tokenId].push(tokenAddress);
+            }
+&nbsp;
+            _collateralBalances[collection][tokenId][tokenAddress] += amount;
+            _disperseTotalTaken[collection][tokenAddress] += amount;
+        }
+	}
+&nbsp;
+	function _rescueCollection(address collection) private {
+		if (collectionIds[collection] == 0) {
+			require(IERC721Enumerable(collection).totalSupply() &gt; 0, NO_TOKENS_MINTED);
+			
+			_totalCollections += 1;
+			collections[_totalCollections] = collection;
+			collectionIds[collection] = _totalCollections;
+		}
+	}
+&nbsp;
+	function _checkEnvious(address collection) private view {
+		if (IERC721(collection).supportsInterface(type(IERC721Envious).interfaceId)) {
+			revert(ALREADY_ENVIOUS);
+		}
+	}
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Jan 21 2023 19:53:29 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
