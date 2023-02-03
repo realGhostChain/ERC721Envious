@@ -25,18 +25,17 @@ module.exports = {
      network_id: 1,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 1000000000, // https://ethgasstation.info/
+     gasPrice: 30000000000, // https://ethgasstation.info/
      skipDryRun: true,
      websockets: true,
     },
-    classic: {
+    ethclassic: {
 	 provider: () => new HDWalletProvider(privateKey, `https://etc.rivet.link`), // https://chainlist.org/chain/61
-     network_id: 61,
+     network_id: 61, // ethclassic was deployed with network_id = 1, then changed back to network_id = 61
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 1000000000, // https://blockscout.com/etc/mainnet/  ||  https://etcblockexplorer.com/  ||  https://etc-network.info/
+     gasPrice: 2000000000, // https://blockscout.com/etc/mainnet/  ||  https://etcblockexplorer.com/  ||  https://etc-network.info/
      skipDryRun: true,
-     websockets: true,
     },
     polygon: {
 	 provider: () => new HDWalletProvider(privateKey, `https://polygon-rpc.com`),
@@ -44,7 +43,7 @@ module.exports = {
      network_id: 137,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 10000000000, // https://polygonscan.com/gastracker
+     gasPrice: 80000000000, // https://polygonscan.com/gastracker
      skipDryRun: true,
     },
     avalanche: {
@@ -66,12 +65,12 @@ module.exports = {
      skipDryRun: true,
     },
     fantom: {
-	 provider: () => new HDWalletProvider(privateKey, `https://www.ankr.com/rpc/fantom/`), // https://docs.fantom.foundation/api/public-api-endpoints
+	 provider: () => new HDWalletProvider(privateKey, `https://rpc.ftm.tools`), // https://docs.fantom.foundation/api/public-api-endpoints
      networkCheckTimeout: 10000, 
      network_id: 250,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // https://ftmscan.com/gastracker
+     gasPrice: 50000000000, // https://ftmscan.com/gastracker
      skipDryRun: true,
     },
     celo: {
@@ -80,16 +79,16 @@ module.exports = {
      network_id: 42220,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // https://cointool.app/gasPrice/celo
+     gasPrice: 1000000000, // https://cointool.app/gasPrice/celo
      skipDryRun: true,
     },
     moonbeam: {
-	 provider: () => new HDWalletProvider(privateKey, `https://1rpc.io/glmr`), // https://docs.moonbeam.network/builders/get-started/endpoints/
+	 provider: () => new HDWalletProvider(privateKey, `https://rpc.api.moonbeam.network`), // https://docs.moonbeam.network/builders/get-started/endpoints/
      networkCheckTimeout: 10000, 
      network_id: 1284,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // https://moonscan.io/gastracker
+     gasPrice: 120000000000, // https://moonscan.io/gastracker
      skipDryRun: true,
     },
     harmony: {
@@ -98,7 +97,7 @@ module.exports = {
      network_id: 1666600000,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // https://cointool.app/gasPrice/one
+     gasPrice: 200000000000, // https://cointool.app/gasPrice/one
      skipDryRun: true,
     },
     iotex: {
@@ -107,7 +106,7 @@ module.exports = {
      network_id: 4689,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // https://cointool.app/gasPrice/iotx
+     gasPrice: 1000000000000, // https://cointool.app/gasPrice/iotx
      skipDryRun: true,
     },
     metis: {
@@ -116,16 +115,54 @@ module.exports = {
      network_id: 1088,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // ???? 
+     gasPrice: 20000000000, // ???? 
      skipDryRun: true,
     },
     astar: {
-	 provider: () => new HDWalletProvider(privateKey, `https://evm.astar.network/`), // https://docs.astar.network/docs/quickstart/endpoints/
+	 provider: () => new HDWalletProvider(privateKey, `https://evm.astar.network`), // https://docs.astar.network/docs/quickstart/endpoints/
      networkCheckTimeout: 10000, 
      network_id: 592,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 5000000000, // ???
+     gasPrice: 10000000000, // ???
+     skipDryRun: true,
+    },
+    auroratest: {
+	 provider: () => new HDWalletProvider(privateKey, `https://testnet.aurora.dev`), // https://testnet.aurorascan.dev/
+     //networkCheckTimeout: 10000, 
+     network_id: 0x4e454153,
+     //timeoutBlocks: 200,
+     //confirmations: 2,
+     gas: 10000000, // ???
+     from: '0x086336b3FAfe868066d935Ef40A89DdB570BF7CA',
+     skipDryRun: true,
+    },
+    gnosis: {
+	 provider: () => new HDWalletProvider(privateKey, `https://rpc.gnosischain.com`), // https://rpc.gnosischain.com
+     networkCheckTimeout: 10000, 
+     network_id: 100,
+     timeoutBlocks: 200,
+     confirmations: 2,
+     gasPrice: 3000000000, // https://gnosisscan.io/
+     skipDryRun: true,
+    },
+    fuse: {
+	 provider: () => new HDWalletProvider(privateKey, `https://rpc.fuse.io/`), // https://rpc.fuse.io/
+     networkCheckTimeout: 10000, 
+     network_id: 122,
+     timeoutBlocks: 200,
+     confirmations: 2,
+     gasPrice: 10000000000, // https://explorer.fuse.io
+     skipDryRun: true,
+    },
+    aurora: {
+	 provider: () => new HDWalletProvider(privateKey, `https://mainnet.aurora.dev`), // https://mainnet.aurora.dev
+     //networkCheckTimeout: 10000, 
+     network_id: 1313161554,
+     //timeoutBlocks: 200,
+     //confirmations: 2,
+     gas: 10000000, // https://explorer.mainnet.aurora.dev/
+     from: '0x086336b3FAfe868066d935Ef40A89DdB570BF7CA',
      skipDryRun: true,
     },
   },
