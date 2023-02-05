@@ -165,6 +165,15 @@ module.exports = {
      from: '0x086336b3FAfe868066d935Ef40A89DdB570BF7CA',
      skipDryRun: true,
     },
+    zkevm: {
+	 provider: () => new HDWalletProvider(privateKey, `https://consensys-zkevm-goerli-prealpha.infura.io/v3/${process.env.ZKEVM_KEY}`),
+     network_id: 59140,
+     timeoutBlocks: 200,
+     confirmations: 2,
+     gasPrice: 2500000000, // https://stats.goerli.net/
+     skipDryRun: true,
+     //websockets: true,
+    },
   },
 
   mocha: {
