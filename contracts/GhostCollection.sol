@@ -8,7 +8,7 @@ contract GhostCollection is ERC721EnviousDynamicPreset {
 	
 	address private _superUser;
 	address private _superMinter;
-
+	
 	constructor(
 		string memory tokenName,
 		string memory tokenSymbol,
@@ -18,11 +18,11 @@ contract GhostCollection is ERC721EnviousDynamicPreset {
 		uint256[] memory edgeRanges,
 		address tokenMeasurment
 	) ERC721EnviousDynamicPreset(
-		tokenName, 
-		tokenSymbol, 
-		baseTokenURI, 
-		edgeValues, 
-		edgeOffsets, 
+		tokenName,
+		tokenSymbol,
+		baseTokenURI,
+		edgeValues,
+		edgeOffsets,
 		edgeRanges,
 		tokenMeasurment
 	) {

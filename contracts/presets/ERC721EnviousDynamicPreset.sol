@@ -72,26 +72,26 @@ contract ERC721EnviousDynamicPreset is IERC721EnviousDynamic, ERC721Enumerable, 
 	}
 
 	/**
-     * @dev See {IERC165-supportsInterface}.
-     */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(IERC165, ERC721Enumerable, ERC721Envious)
-        returns (bool)
-    {
-        return interfaceId == type(IERC721EnviousDynamic).interfaceId ||
-            ERC721Enumerable.supportsInterface(interfaceId) ||
-            ERC721Envious.supportsInterface(interfaceId);
-    }
+	 * @dev See {IERC165-supportsInterface}.
+	 */
+	function supportsInterface(bytes4 interfaceId)
+		public
+		view
+		virtual
+		override(IERC165, ERC721Enumerable, ERC721Envious)
+		returns (bool)
+	{
+		return interfaceId == type(IERC721EnviousDynamic).interfaceId ||
+			ERC721Enumerable.supportsInterface(interfaceId) ||
+			ERC721Envious.supportsInterface(interfaceId);
+	}
 
 	/**
 	 * @dev See {_baseURI}.
 	 */
 	function baseURI() external view virtual returns (string memory) {
-        return _baseURI();
-    }
+		return _baseURI();
+	}
 
 	/**
 	 * @dev Getter function for each token URI.
@@ -104,10 +104,10 @@ contract ERC721EnviousDynamicPreset is IERC721EnviousDynamic, ERC721Enumerable, 
 	 */
 	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
 		_requireMinted(tokenId);
-
-        string memory currentURI = _baseURI();
+		
+		string memory currentURI = _baseURI();
 		uint256 tokenPointer = getTokenPointer(tokenId);
-        return string(abi.encodePacked(currentURI, tokenPointer.toString(), ".json"));
+		return string(abi.encodePacked(currentURI, tokenPointer.toString(), ".json"));
 	}
 
 	/**
@@ -158,12 +158,12 @@ contract ERC721EnviousDynamicPreset is IERC721EnviousDynamic, ERC721Enumerable, 
 	}
 
 	/**
-     * @dev See {IERC721Envious-_changeCommunityAddresses}.
-     */
-    function changeCommunityAddresses(address newTokenAddress, address newBlackHole) public virtual {
-        require(newTokenAddress != address(0), ZERO_ADDRESS);
-        _changeCommunityAddresses(newTokenAddress, newBlackHole);
-    }
+	 * @dev See {IERC721Envious-_changeCommunityAddresses}.
+	 */
+	function changeCommunityAddresses(address newTokenAddress, address newBlackHole) public virtual {
+		require(newTokenAddress != address(0), ZERO_ADDRESS);
+		_changeCommunityAddresses(newTokenAddress, newBlackHole);
+	}
 
 	/**
 	 * @dev See {ERC721EnviousDynamic-mint}
@@ -210,8 +210,8 @@ contract ERC721EnviousDynamicPreset is IERC721EnviousDynamic, ERC721Enumerable, 
 	 * @return base URI string
 	 */
 	function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
-    }
+		return _baseTokenURI;
+	}
 
 	/**
 	 * @dev Ability to change URI for the collection.
@@ -221,14 +221,14 @@ contract ERC721EnviousDynamicPreset is IERC721EnviousDynamic, ERC721Enumerable, 
 	}
 
 	/**
-     * @dev See {ERC721-_beforeTokenTransfer}.
-     */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 firstTokenId,
-        uint256 batchSize
-    ) internal virtual override(ERC721, ERC721Enumerable) {
+	 * @dev See {ERC721-_beforeTokenTransfer}.
+	 */
+	function _beforeTokenTransfer(
+		address from,
+		address to,
+		uint256 firstTokenId,
+		uint256 batchSize
+	) internal virtual override(ERC721, ERC721Enumerable) {
 		ERC721Enumerable._beforeTokenTransfer(from, to, firstTokenId, batchSize);
 	}
 }

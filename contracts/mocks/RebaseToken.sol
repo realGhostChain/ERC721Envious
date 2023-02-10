@@ -124,9 +124,9 @@ contract RebaseToken is IsSTRL, ERC20Permit {
 	 */
 	function rebase(uint256 profit_, uint256 epoch_)
 		public
-	   	override
-	   	onlyStakingContract
-	   	returns (uint256)
+		override
+		onlyStakingContract
+		returns (uint256)
 	{
 		uint256 rebaseAmount;
 		uint256 circulatingSupply_ = circulatingSupply();

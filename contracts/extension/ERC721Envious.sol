@@ -159,70 +159,70 @@ abstract contract ERC721Envious is ERC721, IERC721Envious {
 	}
 
 	/**
-     * @dev See {IERC721Envious-getDiscountedCollateral}.
-     */
-    function getDiscountedCollateral(
-        uint256 bondId,
-        address quoteToken,
-        uint256 tokenId,
-        uint256 amount,
-        uint256 maxPrice
-    ) external virtual override {
-        // NOTE: this contract is temporary holder of `quoteToken` due to the need of
-        // registration of bond inside. `amount` of `quoteToken`s should be empty in
-        // the end of transaction.
+	 * @dev See {IERC721Envious-getDiscountedCollateral}.
+	 */
+	function getDiscountedCollateral(
+		uint256 bondId,
+		address quoteToken,
+		uint256 tokenId,
+		uint256 amount,
+		uint256 maxPrice
+	) external virtual override {
+		// NOTE: this contract is temporary holder of `quoteToken` due to the need of
+		// registration of bond inside. `amount` of `quoteToken`s should be empty in
+		// the end of transaction.
 		_requireMinted(tokenId);
-
-        IERC20(quoteToken).safeTransferFrom(_msgSender(), address(this), amount);
-        IERC20(quoteToken).safeApprove(ghostBondingAddress, amount);
-
-        (uint256 payout,, uint256 index) = IBondDepository(ghostBondingAddress).deposit(
-            bondId,
-            amount,
-            maxPrice,
-            address(this),
-            address(this)
-        );
-
-        if (payout > 0) {
-            bondPayouts[tokenId] += payout;
-            bondIndexes[tokenId].push(index);
-        }
-    }
+		
+		IERC20(quoteToken).safeTransferFrom(_msgSender(), address(this), amount);
+		IERC20(quoteToken).safeApprove(ghostBondingAddress, amount);
+		
+		(uint256 payout,, uint256 index) = IBondDepository(ghostBondingAddress).deposit(
+			bondId,
+			amount,
+			maxPrice,
+			address(this),
+			address(this)
+		);
+		
+		if (payout > 0) {
+			bondPayouts[tokenId] += payout;
+			bondIndexes[tokenId].push(index);
+		}
+	}
 
 	/**
-     * @dev See {IERC721Envious-claimDiscountedCollateral}.
-     */
-    function claimDiscountedCollateral(
-        uint256 tokenId,
-        uint256[] memory indexes
-    ) external virtual override {
-        require(ghostAddress != address(0), EMPTY_GHOST);
-
-        for (uint256 i = 0; i < indexes.length; i++) {
-            uint256 index = _arrayContains(indexes[i], bondIndexes[tokenId]);
-            bondIndexes[tokenId][index] = bondIndexes[tokenId][bondIndexes[tokenId].length - 1];
-            bondIndexes[tokenId].pop();
-        }
-
-        uint256 payout = INoteKeeper(ghostBondingAddress).redeem(address(this), indexes, true);
-
-        if (payout > 0) {
-            bondPayouts[tokenId] -= payout;
-            _addTokenCollateral(tokenId, payout, ghostAddress, true);
-        }
-    }
+	 * @dev See {IERC721Envious-claimDiscountedCollateral}.
+	 */
+	function claimDiscountedCollateral(
+		uint256 tokenId,
+		uint256[] memory indexes
+	) external virtual override {
+		require(ghostAddress != address(0), EMPTY_GHOST);
+		
+		for (uint256 i = 0; i < indexes.length; i++) {
+			uint256 index = _arrayContains(indexes[i], bondIndexes[tokenId]);
+			bondIndexes[tokenId][index] = bondIndexes[tokenId][bondIndexes[tokenId].length - 1];
+			bondIndexes[tokenId].pop();
+		}
+		
+		uint256 payout = INoteKeeper(ghostBondingAddress).redeem(address(this), indexes, true);
+		
+		if (payout > 0) {
+			bondPayouts[tokenId] -= payout;
+			_addTokenCollateral(tokenId, payout, ghostAddress, true);
+		}
+	}
 
 	/**
 	 * @dev See {IERC721Envious-getAmount}
      */
 	function getAmount(
-		uint256 amount, 
+		uint256 amount,
 		address tokenAddress
 	) public view virtual override returns (uint256) {
-        uint256 circulatingSupply = IERC20(communityToken).totalSupply() - IERC20(communityToken).balanceOf(blackHole);
-        return amount * _scaledAmount(tokenAddress) / circulatingSupply;
-    }
+		uint256 circulatingSupply = IERC20(communityToken).totalSupply() - IERC20(communityToken).balanceOf(blackHole);
+		return amount * _scaledAmount(tokenAddress) / circulatingSupply;
+	}
 
 	/**
 	 * @dev Loop over the array in order to find specific token address index.

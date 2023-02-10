@@ -47,10 +47,10 @@ interface IERC721EnviousVrf is IERC721Envious {
 	/// @dev Needed number of block confirmation. The default is 3.
 	/// @return number of block confirmations.
 	function requestConfirmations() external view returns (uint16);
-
-    /// @dev Get on-chain randomness from Chainlink VRF v2.
-    /// 
-    /// @return requestId unique identifier.
+	
+	/// @dev Get on-chain randomness from Chainlink VRF v2.
+	/// 
+	/// @return requestId unique identifier.
 	function prepareRandomness() external returns (uint256);
 
 	/// @dev Extra amount to be distributed for randomly chosen tokens.
@@ -78,45 +78,45 @@ interface IERC721EnviousVrf is IERC721Envious {
 	/// @param tokenId unique identifier of token.
 	/// @return addiional amount to be distributed.
 	function randomAmountsDisperse(address tokenAddress, uint256 tokenId) external view returns(uint256);
-
-    /// @dev Collateralize random token ids with predefined `amounts` of `tokenAddresses`.
-    /// 
-    /// Requirements:
-    /// - length of tokens and length of amounts must match
-    /// 
-    /// @param amounts of tokens to be send as collateral
-    /// @param tokenAddresses address of tokens to be send as collateral
+	
+	/// @dev Collateralize random token ids with predefined `amounts` of `tokenAddresses`.
+	/// 
+	/// Requirements:
+	/// - length of tokens and length of amounts must match
+	/// 
+	/// @param amounts of tokens to be send as collateral
+	/// @param tokenAddresses address of tokens to be send as collateral
 	function collateralRandomTokens(
 		uint256[] memory amounts, 
 		address[] memory tokenAddresses
 	) external payable;
-
-    /// @dev Collateralize specified token ids with random amounts.
-    /// 
-    /// Requirements:
-    /// - amount should match with `msg.value` if ETH is used
-    /// 
-    /// @param tokenIds array of tokens to be collateralized
-    /// @param amount of tokens, total amount that will be split
-    /// @param tokenAddress address of token to be used as collateral
+	
+	/// @dev Collateralize specified token ids with random amounts.
+	/// 
+	/// Requirements:
+	/// - amount should match with `msg.value` if ETH is used
+	/// 
+	/// @param tokenIds array of tokens to be collateralized
+	/// @param amount of tokens, total amount that will be split
+	/// @param tokenAddress address of token to be used as collateral
 	function collateralRandomAmounts(
 		uint256[] memory tokenIds,
 		uint256 amount,
 		address tokenAddress
 	) external payable;
-
-    /// @dev Initialize all chainlink related information.
-    /// 
-    /// @param newSSubscriptionId your subscription id
-    /// @param newSKeyHash the gas lane to use, which specifies the maximum gas price to bump to
+	
+	/// @dev Initialize all chainlink related information.
+	/// 
+	/// @param newSSubscriptionId your subscription id
+	/// @param newSKeyHash the gas lane to use, which specifies the maximum gas price to bump to
 	/// @param newNumWords number of random values to retrieve
-    /// @param newCallbackGasLimit needed gaslimit for fulfillRandomWords()
-    /// @param newRequestConfirmations number of confirmations before the result
+	/// @param newCallbackGasLimit needed gaslimit for fulfillRandomWords()
+	/// @param newRequestConfirmations number of confirmations before the result
 	function initializeVRF(
-        uint64 newSSubscriptionId,
-        bytes32 newSKeyHash,
+		uint64 newSSubscriptionId,
+		bytes32 newSKeyHash,
 		uint32 newNumWords,
-        uint32 newCallbackGasLimit,
-        uint16 newRequestConfirmations
+		uint32 newCallbackGasLimit,
+		uint16 newRequestConfirmations
 	) external;
 }

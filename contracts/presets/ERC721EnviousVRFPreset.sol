@@ -61,10 +61,10 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	mapping(address => uint256) public override extraDisperseTaken;
 
 	/// @dev See {IERC721EnviousVrf-extraDisperseTokenId}
-    mapping(address => uint256) public override extraDisperseTokenId;
+	mapping(address => uint256) public override extraDisperseTokenId;
 
 	/// @dev See {IERC721EnviousVrf-randomAmountsDisperse}
-    mapping(address => mapping(uint256 => uint256)) public override randomAmountsDisperse;
+	mapping(address => mapping(uint256 => uint256)) public override randomAmountsDisperse;
 
 	// map donator addresses to requestIds
 	mapping(uint256 => address) private _donators;
@@ -96,49 +96,49 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	}
 
 	/**
-     * @dev See {IERC165-supportsInterface}.
-     */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(IERC165, ERC721Envious)
-        returns (bool)
-    {
-        return interfaceId == type(IERC721EnviousVrf).interfaceId ||
+	 * @dev See {IERC165-supportsInterface}.
+	 */
+	function supportsInterface(bytes4 interfaceId)
+		public
+		view
+		virtual
+		override(IERC165, ERC721Envious)
+		returns (bool)
+	{
+		return interfaceId == type(IERC721EnviousVrf).interfaceId ||
 			interfaceId == type(VRFConsumerBaseV2).interfaceId ||
-		   	ERC721Envious.supportsInterface(interfaceId);
-    }
+			ERC721Envious.supportsInterface(interfaceId);
+	}
 
 
 	/**
-     * @dev See {_baseURI}.
-     */
-    function baseURI() external view virtual returns (string memory) {
-        return _baseURI();
-    }
+	 * @dev See {_baseURI}.
+	 */
+	function baseURI() external view virtual returns (string memory) {
+		return _baseURI();
+	}
 
 	/**
-     * @dev Getter function for each token URI.
-     *
-     * Requirements:
-     * - `tokenId` must exist.
-     *
-     * @param tokenId unique identifier of token
-     * @return token URI string
-     */
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        _requireMinted(tokenId);
-
-        string memory currentURI = _baseURI();
-        return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
-    }
+	 * @dev Getter function for each token URI.
+	 *
+	 * Requirements:
+	 * - `tokenId` must exist.
+	 *
+	 * @param tokenId unique identifier of token
+	 * @return token URI string
+	 */
+	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+		_requireMinted(tokenId);
+		
+		string memory currentURI = _baseURI();
+		return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
+	}
 	
 	/**
-     * @dev Getter function for amount of minted tokens.
-     *  
-     * @return total supply 
-     */
+	 * @dev Getter function for amount of minted tokens.
+	 *
+	 * @return total supply 
+	 */
 	function totalSupply() public view virtual returns (uint256) {
 		return _nextTokenId.current() - 1;
 	}
@@ -168,8 +168,8 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	}
 
 	/**
-     * @dev See {ERC721Envious-_changeGhostAddresses}.
-     */
+	 * @dev See {ERC721Envious-_changeGhostAddresses}.
+	 */
 	function setGhostAddresses(
 		address ghostToken, 
 		address ghostBonding
@@ -179,11 +179,11 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 
 	/**
 	 * @dev See {IERC721Envious-__changeCommunityAddresses}.
-     */
-    function changeCommunityAddresses(address newTokenAddress, address newBlackHole) public virtual {
-        require(newTokenAddress != address(0), ZERO_ADDRESS);
-        _changeCommunityAddresses(newTokenAddress, newBlackHole);
-    }
+	 */
+	function changeCommunityAddresses(address newTokenAddress, address newBlackHole) public virtual {
+		require(newTokenAddress != address(0), ZERO_ADDRESS);
+		_changeCommunityAddresses(newTokenAddress, newBlackHole);
+	}
 
 	/*
 	 * @dev See {IERC721Envious-_changeCommissions}.
@@ -272,8 +272,8 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	}
 	
 	/**
-     * @dev See {ERC721-_mint}
-     */
+	 * @dev See {ERC721-_mint}
+	 */
 	function mint(address to) public virtual override onlyOwner {
 		uint256 currentTokenId = _nextTokenId.current();
 		_nextTokenId.increment();
@@ -285,35 +285,35 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	}
 
 	/**
-     * @dev See {ERC721Envious-_disperse}.
-     */
+	 * @dev See {ERC721Envious-_disperse}.
+	 */
 	function _disperse(address tokenAddress, uint256 tokenId) internal virtual override {
 		uint256 balance = disperseBalance[tokenAddress] / (_nextTokenId.current() - 1);
-
+		
 		if (disperseTotalTaken[tokenAddress] + balance > disperseBalance[tokenAddress]) {
 			balance = disperseBalance[tokenAddress] - disperseTotalTaken[tokenAddress];
 		}
-
+		
 		// adjust result from `collateralRandomAmounts`
 		balance += randomAmountsDisperse[tokenAddress][tokenId];
-
+		
 		// adjust result from `collateralRandomIds`
 		if (extraDisperseTokenId[tokenAddress] != 0 && tokenId % extraDisperseTokenId[tokenAddress] == 0) {
 			uint256 piece = (_nextTokenId.current() - 1) / extraDisperseTokenId[tokenAddress];
 			uint256 extraBalance = piece > 0 ? extraDisperseAmount[tokenAddress] / piece : 0;
-
+			
 			if (extraDisperseTaken[tokenAddress] + extraBalance > extraDisperseAmount[tokenAddress]) {
 				extraBalance = extraDisperseAmount[tokenAddress] - extraDisperseTaken[tokenAddress];
 			}
-
+			
 			balance += extraBalance;
 			extraDisperseTaken[tokenAddress] += extraBalance;
 		}
-
+		
 		if (balance > disperseTaken[tokenId][tokenAddress]) {
 			uint256 amount = balance - disperseTaken[tokenId][tokenAddress];
 			disperseTaken[tokenId][tokenAddress] += amount;
-
+			
 			(bool shouldAppend,) = _arrayContains(tokenAddress, collateralTokens[tokenId]);
 			if (shouldAppend) {
 				collateralTokens[tokenId].push(tokenAddress);
@@ -326,17 +326,18 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 
 	/* solhint-disable */
 	/**
-     * @dev Some action on the contract state should be taken here, like storing the result.
-     * @dev WARNING: take care to avoid having multiple VRF requests in flight if their order
+	 * @dev Some action on the contract state should be taken here, like storing the result.
+	 * @dev WARNING: take care to avoid having multiple VRF requests in flight if their order
 	 * of arrival would result in contract states with different outcomes. Otherwise miners 
 	 * or the VRF operator would could take advantage by controlling the order.
-     * @dev The VRF Coordinator will only send this function verified responses, and the parent 
+	 *
+	 * @dev The VRF Coordinator will only send this function verified responses, and the parent 
 	 * VRFConsumerBaseV2 contract ensures that this method only receives randomness from the 
 	 * designated VRFCoordinator.
-     *
-     * @param requestId request unqiue identifier
-     * @param randomWords the random result returned by the oracle
-     */
+	 *
+	 * @param requestId request unqiue identifier
+	 * @param randomWords the random result returned by the oracle
+	 */
 	function fulfillRandomWords(
 		uint256 requestId, 
 		uint256[] memory randomWords
@@ -360,11 +361,11 @@ contract ERC721EnviousVRFPreset is Ownable, IERC721EnviousVrf, ERC721Envious, VR
 	}
 
 	/**
-     * @dev Getter function for `_baseTokenURI`.
-     *
-     * @return base URI string
-     */
-    function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
-    }
+	 * @dev Getter function for `_baseTokenURI`.
+	 *
+	 * @return base URI string
+	 */
+	function _baseURI() internal view virtual override returns (string memory) {
+		return _baseTokenURI;
+	}
 }

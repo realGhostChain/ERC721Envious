@@ -200,27 +200,34 @@ contract BadToken is LibNote {
     }
 
     // --- Approve by signature ---
-    function permit(address holder, address spender, uint256 nonce, uint256 expiry,
-                    bool allowed, uint8 v, bytes32 r, bytes32 s) external
-    {
-        bytes32 digest =
-            keccak256(abi.encodePacked(
-                "\x19\x01",
-                DOMAIN_SEPARATOR,
-                keccak256(abi.encode(PERMIT_TYPEHASH,
-                                     holder,
-                                     spender,
-                                     nonce,
-                                     expiry,
-                                     allowed))
-        ));
-
-        require(holder != address(0), "Bdt/invalid-address-0");
-        require(holder == ecrecover(digest, v, r, s), "Bdt/invalid-permit");
-        require(expiry == 0 || block.timestamp <= expiry, "Bdt/permit-expired");
-        require(nonce == nonces[holder]++, "Bdt/invalid-nonce");
-        uint wad = allowed ? type(uint256).min : 0;
-        allowances[holder][spender] = wad;
-        emit Approval(holder, spender, wad);
-    }
+	function permit(
+		address holder,
+		address spender,
+		uint256 nonce,
+		uint256 expiry,
+		bool allowed,
+		uint8 v,
+		bytes32 r,
+		bytes32 s
+	) external {
+		bytes32 digest =
+			keccak256(abi.encodePacked(
+				"\x19\x01",
+				DOMAIN_SEPARATOR,
+				keccak256(abi.encode(PERMIT_TYPEHASH,
+									 holder,
+									 spender,
+									 nonce,
+									 expiry,
+									 allowed))
+		));
+		
+		require(holder != address(0), "Bdt/invalid-address-0");
+		require(holder == ecrecover(digest, v, r, s), "Bdt/invalid-permit");
+		require(expiry == 0 || block.timestamp <= expiry, "Bdt/permit-expired");
+		require(nonce == nonces[holder]++, "Bdt/invalid-nonce");
+		uint wad = allowed ? type(uint256).min : 0;
+		allowances[holder][spender] = wad;
+		emit Approval(holder, spender, wad);
+	}
 }

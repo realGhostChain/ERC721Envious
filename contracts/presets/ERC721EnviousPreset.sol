@@ -69,27 +69,27 @@ contract ERC721EnviousPreset is
 	}
 
 	/**
-     * @dev See {_baseURI}.
-     */
-    function baseURI() external view virtual returns (string memory) {
-        return _baseURI();
-    }
+	 * @dev See {_baseURI}.
+	 */
+	function baseURI() external view virtual returns (string memory) {
+		return _baseURI();
+	}
 
 	/**
-     * @dev Getter function for each token URI.
-     *
-     * Requirements:
-     * - `tokenId` must exist.
-     *
-     * @param tokenId unique identifier of token
-     * @return token URI string
-     */
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        _requireMinted(tokenId);
-
-        string memory currentURI = _baseURI();
-        return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
-    }
+	 * @dev Getter function for each token URI.
+	 *
+	 * Requirements:
+	 * - `tokenId` must exist.
+	 *
+	 * @param tokenId unique identifier of token
+	 * @return token URI string
+	 */
+	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+		_requireMinted(tokenId);
+		
+		string memory currentURI = _baseURI();
+		return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
+	}
 
 	/**
 	 * @dev See {IERC165-supportsInterface}.
@@ -213,8 +213,8 @@ contract ERC721EnviousPreset is
 	 */
 	function _beforeTokenTransfer(
 		address from,
-        address to,
-        uint256 tokenId,
+		address to,
+		uint256 tokenId,
 		uint256 batchSize
 	) internal virtual override(ERC721, ERC721Pausable, ERC721Enumerable) {
 		ERC721Enumerable._beforeTokenTransfer(from, to, tokenId, batchSize);
@@ -222,11 +222,11 @@ contract ERC721EnviousPreset is
 	}
 
 	/**
-     * @dev Getter function for `_baseTokenURI`.
-     *
-     * @return base URI string
-     */
-    function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
-    }
+	 * @dev Getter function for `_baseTokenURI`.
+	 *
+	 * @return base URI string
+	 */
+	function _baseURI() internal view virtual override returns (string memory) {
+		return _baseTokenURI;
+	}
 }

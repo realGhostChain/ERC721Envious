@@ -141,12 +141,12 @@ interface IERC721Envious is IERC721 {
 	function collateralBalances(uint256 tokenId, address tokenAddress) external view returns (uint256);
 
 	/**
-     * @dev Calculator function for harvesting.
-     *
-     * @param amount of `communityToken`s to spend
-     * @param tokenAddress of token to be harvested
-     * @return amount to harvest based on inputs
-     */
+	 * @dev Calculator function for harvesting.
+	 *
+	 * @param amount of `communityToken`s to spend
+	 * @param tokenAddress of token to be harvested
+	 * @return amount to harvest based on inputs
+	 */
 	function getAmount(uint256 amount, address tokenAddress) external view returns (uint256);
 
 	/**
@@ -187,29 +187,29 @@ interface IERC721Envious is IERC721 {
 	) external;
 
 	/**
-     * @dev Collateralize NFT with discount, based on available bonds. While
-     * purchased bond will have delay the owner will be current smart contract
-     *
-     * @param bondId the ID of the market
-     * @param tokenId unique identifier of NFT inside current smart contract
-     * @param amount the amount of quote token to spend
-     * @param maxPrice the maximum price at which to buy bond
-     */
+	 * @dev Collateralize NFT with discount, based on available bonds. While
+	 * purchased bond will have delay the owner will be current smart contract
+	 *
+	 * @param bondId the ID of the market
+	 * @param tokenId unique identifier of NFT inside current smart contract
+	 * @param amount the amount of quote token to spend
+	 * @param maxPrice the maximum price at which to buy bond
+	 */
 	function getDiscountedCollateral(
-        uint256 bondId,
-        address quoteToken,
-        uint256 tokenId,
-        uint256 amount,
-        uint256 maxPrice
-    ) external;
+		uint256 bondId,
+		address quoteToken,
+		uint256 tokenId,
+		uint256 amount,
+		uint256 maxPrice
+	) external;
 
 	/**
-     * @dev Claim collateral inside this smart contract and extending underlying
-     * data mappings.
-     *
-     * @param tokenId unique identifier of NFT inside current smart contract
-     * @param indexes array of note indexes to redeem
-     */
+	 * @dev Claim collateral inside this smart contract and extending underlying
+	 * data mappings.
+	 *
+	 * @param tokenId unique identifier of NFT inside current smart contract
+	 * @param indexes array of note indexes to redeem
+	 */
 	function claimDiscountedCollateral(uint256 tokenId, uint256[] memory indexes) external;
 
 	/**

@@ -55,53 +55,53 @@ contract ERC721EnviousRoyaltyPreset is Ownable, IERC721EnviousRoyalty, ERC721Enu
 	}
 
 	/**
-     * @dev See {IERC165-supportsInterface}.
-     */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(IERC165, ERC721Enumerable, ERC721Envious)
-        returns (bool)
-    {
-        return interfaceId == type(IERC721EnviousRoyalty).interfaceId ||
+	 * @dev See {IERC165-supportsInterface}.
+	 */
+	function supportsInterface(bytes4 interfaceId)
+		public
+		view
+		virtual
+		override(IERC165, ERC721Enumerable, ERC721Envious)
+		returns (bool)
+	{
+		return interfaceId == type(IERC721EnviousRoyalty).interfaceId ||
 			ERC721Enumerable.supportsInterface(interfaceId) ||
 			ERC721Envious.supportsInterface(interfaceId);
-    }
+	}
 
 	/**
-     * @dev See {_baseURI}.
-     */
-    function baseURI() external view virtual returns (string memory) {
-        return _baseURI();
-    }
+	 * @dev See {_baseURI}.
+	 */
+	function baseURI() external view virtual returns (string memory) {
+		return _baseURI();
+	}
 
 	/**
-     * @dev Getter function for each token URI.
-     *
-     * Requirements:
-     * - `tokenId` must exist.
-     *
-     * @param tokenId unique identifier of token
-     * @return token URI string
-     */
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        _requireMinted(tokenId);
-
-        string memory currentURI = _baseURI();
-        return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
-    }
+	 * @dev Getter function for each token URI.
+	 *
+	 * Requirements:
+	 * - `tokenId` must exist.
+	 *
+	 * @param tokenId unique identifier of token
+	 * @return token URI string
+	 */
+	function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+		_requireMinted(tokenId);
+		
+		string memory currentURI = _baseURI();
+		return string(abi.encodePacked(currentURI, tokenId.toString(), ".json"));
+	}
 
 	/**
-     * @dev Set ghost related addresses.
-     *
-     * Requirements:
-     * - `ghostAddress` must be non-zero address
-     * - `ghostBonding` must be non-zero address
-     *
-     * @param ghostToken non-rebasing wrapping token address
-     * @param ghostBonding bonding contract address
-     */
+	 * @dev Set ghost related addresses.
+	 *
+	 * Requirements:
+	 * - `ghostAddress` must be non-zero address
+	 * - `ghostBonding` must be non-zero address
+	 *
+	 * @param ghostToken non-rebasing wrapping token address
+	 * @param ghostBonding bonding contract address
+	 */
 	function setGhostAddresses(
 		address ghostToken, 
 		address ghostBonding
@@ -114,15 +114,15 @@ contract ERC721EnviousRoyaltyPreset is Ownable, IERC721EnviousRoyalty, ERC721Enu
 	}
 
 	/**
-     * @dev See {IERC721Envious-_changeCommunityAddresses}.
-     */
-    function changeCommunityAddresses(
-		address newTokenAddress, 
+	 * @dev See {IERC721Envious-_changeCommunityAddresses}.
+	 */
+	function changeCommunityAddresses(
+		address newTokenAddress,
 		address newBlackHole
 	) public virtual onlyOwner {
-        require(newTokenAddress != address(0), ZERO_ADDRESS);
-        _changeCommunityAddresses(newTokenAddress, newBlackHole);
-    }
+		require(newTokenAddress != address(0), ZERO_ADDRESS);
+		_changeCommunityAddresses(newTokenAddress, newBlackHole);
+	}
 
 	/**
 	 * @dev See {ERC721Envious-_changeCommissions}.
@@ -191,7 +191,7 @@ contract ERC721EnviousRoyaltyPreset is Ownable, IERC721EnviousRoyalty, ERC721Enu
 		// NOTE: if you need to make tokens without collateral to be non-transferable
 		// require(total > 0, "no collateral found");
 		_getRoyaltyFromCollateral(tokenId, royalty);
-        ERC721Enumerable._beforeTokenTransfer(from, to, tokenId, batchSize);
+		ERC721Enumerable._beforeTokenTransfer(from, to, tokenId, batchSize);
 	}
 
 	/**
@@ -219,11 +219,11 @@ contract ERC721EnviousRoyaltyPreset is Ownable, IERC721EnviousRoyalty, ERC721Enu
 	}
 
 	/**
-     * @dev Getter function for `_baseTokenURI`.
-     *
-     * @return base URI string
-     */
-    function _baseURI() internal view virtual override returns (string memory) {
-        return _baseTokenURI;
-    }
+	 * @dev Getter function for `_baseTokenURI`.
+	 *
+	 * @return base URI string
+	 */
+	function _baseURI() internal view virtual override returns (string memory) {
+		return _baseTokenURI;
+	}
 }

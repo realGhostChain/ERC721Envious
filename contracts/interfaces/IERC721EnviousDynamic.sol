@@ -12,18 +12,18 @@ import "./IERC721Envious.sol";
  */
 interface IERC721EnviousDynamic is IERC721Envious {
 	struct Edge {
-        uint256 value;
-        uint256 offset;
-        uint256 range;
-    }
+		uint256 value;
+		uint256 offset;
+		uint256 range;
+	}
 
 	/**
-     * @dev Get `tokenURI` for specific token based on edges. Where actual 
+	 * @dev Get `tokenURI` for specific token based on edges. Where actual 
 	 * collateral should define which edge should be used, range shows
 	 * maximum value in current edge, offset shows minimal value in current
 	 * edge.
-     *
-     * @param tokenId unique identifier for token
-     */
+	 *
+	 * @param tokenId unique identifier for token
+	 */
 	function getTokenPointer(uint256 tokenId) external view returns (uint256);
 }

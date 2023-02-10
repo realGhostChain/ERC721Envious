@@ -6,25 +6,25 @@ import "../openzeppelin/token/ERC20/IERC20.sol";
 
 interface IBondDepository {
 	event CreateMarket(
-        uint256 indexed id,
-        address indexed baseToken,
-        address indexed quoteToken,
-        uint256 initialPrice
-    );
-
-    event CloseMarket(uint256 indexed id);
-
-    event Bond(
-        uint256 indexed id,
-        uint256 amount,
-        uint256 price
-    );
-
-    event Tuned(
-        uint256 indexed id,
-        uint64 oldControlVariable,
-        uint64 newControlVariable
-    );
+		uint256 indexed id,
+		address indexed baseToken,
+		address indexed quoteToken,
+		uint256 initialPrice
+	);
+	
+	event CloseMarket(uint256 indexed id);
+	
+	event Bond(
+		uint256 indexed id,
+		uint256 amount,
+		uint256 price
+	);
+	
+	event Tuned(
+		uint256 indexed id,
+		uint64 oldControlVariable,
+		uint64 newControlVariable
+	);
 	
 	// Info about each type of market
 	struct Market {
