@@ -9,3 +9,5 @@ node_modules
 .solcx-lock-*
 analyze.sh
 coverage.json
+
+docs/_build
