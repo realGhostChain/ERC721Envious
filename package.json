@@ -18,7 +18,7 @@
     "ganache-cli": "^6.12.2",
     "solidity-coverage": "^0.7.21",
     "truffle-contract-size": "^2.0.1",
-    "truffle-plugin-verify": "^0.5.28"
+    "truffle-plugin-verify": "^0.6.1"
   },
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.1.2",

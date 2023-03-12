@@ -25,7 +25,7 @@ module.exports = {
      network_id: 1,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 30000000000, // https://ethgasstation.info/
+     gasPrice: 20000000000, // https://ethgasstation.info/
      skipDryRun: true,
      websockets: true,
     },
@@ -34,7 +34,7 @@ module.exports = {
      network_id: 61, // ethclassic was deployed with network_id = 1, then changed back to network_id = 61
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 2000000000, // https://blockscout.com/etc/mainnet/  ||  https://etcblockexplorer.com/  ||  https://etc-network.info/
+     gasPrice: 1500000000, // https://blockscout.com/etc/mainnet/  ||  https://etcblockexplorer.com/  ||  https://etc-network.info/
      skipDryRun: true,
     },
     polygon: {
@@ -43,7 +43,7 @@ module.exports = {
      network_id: 137,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 80000000000, // https://polygonscan.com/gastracker
+     gasPrice: 250000000000, // https://polygonscan.com/gastracker
      skipDryRun: true,
     },
     avalanche: {
@@ -70,7 +70,7 @@ module.exports = {
      network_id: 250,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 50000000000, // https://ftmscan.com/gastracker
+     gasPrice: 25000000000, // https://ftmscan.com/gastracker
      skipDryRun: true,
     },
     celo: {
@@ -79,7 +79,7 @@ module.exports = {
      network_id: 42220,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 1000000000, // https://cointool.app/gasPrice/celo
+     gasPrice: 26000000000, // https://cointool.app/gasPrice/celo
      skipDryRun: true,
     },
     moonbeam: {
@@ -88,7 +88,7 @@ module.exports = {
      network_id: 1284,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 120000000000, // https://moonscan.io/gastracker
+     gasPrice: 100000000000, // https://moonscan.io/gastracker
      skipDryRun: true,
     },
     harmony: {
@@ -97,7 +97,7 @@ module.exports = {
      network_id: 1666600000,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 200000000000, // https://cointool.app/gasPrice/one
+     gasPrice: 1030000000000, // https://cointool.app/gasPrice/one
      skipDryRun: true,
     },
     iotex: {
@@ -115,16 +115,16 @@ module.exports = {
      network_id: 1088,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 20000000000, // ???? 
+     gasPrice: 16000000000, // ???? 
      skipDryRun: true,
     },
     astar: {
-	 provider: () => new HDWalletProvider(privateKey, `https://evm.astar.network`), // https://docs.astar.network/docs/quickstart/endpoints/
+	 provider: () => new HDWalletProvider(privateKey, `https://astar.public.blastapi.io`), // https://docs.astar.network/docs/quickstart/endpoints/
      networkCheckTimeout: 10000, 
      network_id: 592,
      timeoutBlocks: 200,
      confirmations: 2,
-     gasPrice: 10000000000, // ???
+     gasPrice: 2000000000, // ???
      skipDryRun: true,
     },
     auroratest: {
@@ -133,7 +133,7 @@ module.exports = {
      network_id: 0x4e454153,
      //timeoutBlocks: 200,
      //confirmations: 2,
-     gas: 10000000, // ???
+     //gas: 10000000, // ???
      from: '0x086336b3FAfe868066d935Ef40A89DdB570BF7CA',
      skipDryRun: true,
     },
@@ -161,7 +161,7 @@ module.exports = {
      network_id: 1313161554,
      //timeoutBlocks: 200,
      //confirmations: 2,
-     gas: 10000000, // https://explorer.mainnet.aurora.dev/
+     gas: 13000000, // https://explorer.mainnet.aurora.dev/
      from: '0x086336b3FAfe868066d935Ef40A89DdB570BF7CA',
      skipDryRun: true,
     },
@@ -206,5 +206,6 @@ module.exports = {
     ftmscan: process.env.FTMSCAN_API,
     moonscan: process.env.MOONSCAN_API,
     celoscan: process.env.CELOSCAN_API,
+    gnosisscan: process.env.GNOSISSCAN_API,
   },
 };
